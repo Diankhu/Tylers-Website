@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>Projects</title>
+    <link rel="stylesheet" href="static/main/css/header.css">
+    <link rel="stylesheet" href="static/main/css/navbar.css">
+    <link rel="stylesheet" href="static/main/css/projects_main.css">
+    <link rel="stylesheet" href="static/main/css/footer.css">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather|Montserrat|Sacramento|Quintessential" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="CSE 477 HW 1 Projects Page">
+    <meta name="author" content="Tyler White">
+    <title></title>
+  </head>
+  <body>
+  <!--- Header Section --->
+  <header >
+    <div class="header_wrapper">
+
+
+    <!---container for the header banner --->
+      <div class="banner" >
+        <img src="static/main/images/banner.jpg" alt="banner image" loading="lazy" class = "banner_picture">
+      </div>
+    </div>
+  </header>
+
+  <!--- Navigation Bar section--->
+  <nav>
+    <div class="nav_wrapper">
+      <p class = "assignment_name">CSE 477 Homework 1</p>
+      <!--- contains all link items--->
+      <div class="links">
+        <!--- checkbox functionality allowing menu dropdown menu--->
+        <input title="dropdown menu checkbox" type="checkbox" id= "nav-toggle" class="nav-toggle" >
+        <!--- label attaches something to the checkbox and allows you to choose what the checkbox looks like --->
+        <label for="nav-toggle" class= "nav-toggle-label">
+          <span>
+            <!---  use the menu bar picture as the dropdown button--->
+            <img src="static/main/images/menu-bar.png" alt="menu bar logo" loading="lazy"  class = "menu_bar">
+          </span>
+        </label>
+        <!-- list of the links in the nav bar -->
+        <ul class="list_link">
+          <li><a href="/home.html" class="link">Home</a></li>
+          <li><a href="/projects.html" class="link">Projects</a></li>
+          <li>
+            <a href="static/main/images/resume.pdf"  target="_blank" loading="lazy" class="link">Resume</a>
+          </li>
+          <!--- this list item is for when the screen is below 650px and the linkedin image is not being used --->
+          <li>
+            <a href="https://www.linkedin.com/in/whitety4/"  id = "small_screen_linkedin" target="_blank" class="link">
+              LinkedIn
+            </a>
+          </li>
+          <li>
+            <!---  target blank brings the link in another tab--->
+            <a href="https://www.linkedin.com/in/whitety4/"  target="_blank" class="link">
+              <img src="static/main/images/social-linkedin.png" alt="linkedin logo" loading="lazy" class = "linkedin_logo" >
+            </a>
+          </li>
+
+        </ul>
+      <!-- end of links div -->
+      </div>
+      <!-- end of nav wrapper -->
+    </div>
+  </nav>
+
+  <!--- main content --->
+  <main>
+    <!--- div wraps around all the content --->
+    <div class="content_wrapper">
+
+      <div class="main_wrapper_div">
+        <div class="projects_desc content">
+          <h2 class = projects_p>This page is to show off the projects I have done. Click on any image or link
+            to learn more about each project.
+          </h2>
+        </div>
+        <!-- piano image div -->
+        <div class="piano_image content">
+          <a href="/piano.html" class = "piano_link">
+            <img src="static/main/images/piano.jpeg" alt="piano picture" loading="lazy" class = "piano_picture">
+          </a>
+        </div>
+        <!-- description of piano project -->
+        <div class="piano_desc content">
+          <h2>Javascript Piano</h2>
+          <p>
+            This project was built purely in HTML, CSS, and Javascript. As for functionality,
+            the project allows one to interact with a live minature piano that contains 10 white keys and 7 black keys.
+          </p>
+          <p>
+            You can hover over the piano to see what keys on the keyboard correlate with the keys on the piano.
+            When a piano key is played, the key itself will go down like a live piano key would and then go back to normal.
+          </p>
+          <p>
+            I hope this helps you discover the power of music! Click on the piano image or this
+          </p>
+          <!-- link to the piano -->
+          <p>
+            <a href="/piano.html" class = "link piano">Click on the piano image or this link to access the piano.</a>
+          </p>
+
+        </div>
+      <!-- end of main wrapper div -->
+      </div>
+      <!-- end of content wrapper div -->
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="footer_wrapper">
+      <p class = "footer">&#169; Tyler White </p>
+    </div>
+
+
+  </footer>
+  </body>
+</html>

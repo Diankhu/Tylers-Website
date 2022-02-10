@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <title>Home</title>
+    <link rel="stylesheet" href="static/main/css/header.css">
+    <link rel="stylesheet" href="static/main/css/navbar.css">
+    <link rel="stylesheet" href="static/main/css/main.css">
+    <link rel="stylesheet" href="static/main/css/footer.css">
+    <link href="https://fonts.googleapis.com/css?family=Merriweather|Montserrat|Sacramento|Quintessential" rel="stylesheet">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="CSE 477 HW 1 Home Page">
+    <meta name="author" content="Tyler White">
+    <title></title>
+  </head>
+  <body>
+  <!--- Header Section --->
+  <header >
+    <div class="header_wrapper">
+
+
+    <!---container for the header banner --->
+      <div class="banner" >
+        <img src="static/main/images/banner.jpg" alt="banner" loading="lazy" class = "banner_picture">
+      </div>
+    </div>
+  </header>
+
+  <!--- Navigation Bar section--->
+  <nav>
+    <div class="nav_wrapper">
+      <p class = "assignment_name">CSE 477 Homework 1</p>
+      <!--- contains all link items--->
+      <div class="links">
+        <!--- checkbox functionality allowing menu dropdown menu--->
+        <input title="dropdown menu checkbox, click to activate" type="checkbox" id= "nav-toggle" class="nav-toggle" >
+        <!--- label attaches something to the checkbox and allows you to choose what the checkbox looks like --->
+        <label for="nav-toggle" class= "nav-toggle-label">
+          <span>
+            <!---  use the menu bar picture as the dropdown button--->
+            <img src="static/main/images/menu-bar.png" alt="menu bar logo" loading="lazy" class = "menu_bar" >
+          </span>
+        </label>
+        <!-- list of links in the nav bar -->
+        <ul class = "list_link">
+          <li><a href="/home.html" class="link">Home</a></li>
+          <li><a href="/projects.html" class="link">Projects</a></li>
+          <li>
+            <a href="static/main/images/resume.pdf"  target="_blank" loading="lazy" class="link">Resume</a>
+          </li>
+          <!--- this list item is for when the screen is below 650px and the linkedin image is not being used --->
+          <li>
+            <a href="https://www.linkedin.com/in/whitety4/"  id = "small_screen_linkedin" target="_blank" class="link">
+              LinkedIn
+            </a>
+          </li>
+          <li>
+            <!---  target blank brings the link in another tab--->
+            <a href="https://www.linkedin.com/in/whitety4/"  target="_blank" class="link">
+              <img src="static/main/images/social-linkedin.png" alt="linkedin logo" loading="lazy" class = "linkedin_logo" >
+            </a>
+          </li>
+
+        </ul>
+      <!-- end of links div -->
+      </div>
+      <!-- end of nav wrapper -->
+    </div>
+
+  </nav>
+  <!--- main content --->
+  <main>
+    <!--- div wraps around all the content --->
+    <div class="content_wrapper">
+
+
+      <div class="main_wrapper_div">
+        <!-- contains picture of myself -->
+        <div class="profile_pic content top">
+          <img src="static/main/images/headshot.jpg" alt=" picture of me" loading="lazy" class = "self_picture">
+        </div>
+        <!-- description of me -->
+        <div class="profile_desc content top">
+          <p>I am Tyler White, a Fifth year Senior at Michigan State University majoring in Computer Science and minoring in Japanese.
+             I have been learning Japanese for 4 years now and I am trying to do a study abroad in Japan for Fall 2022 semester. I have already been accepted in the program,
+             but the program keeps getting cancelled due to the current Covid restrictions in Japan. If I am able to study abroad in Japan, I will graduate in Spring of 2023,
+             but if the program gets cancelled, then I will graduate in December of 2022.
+          </p>
+          <p>After I graduate from Michigan State University, I intend on moving out of Michigan and hopefully get a job in either California or Japan. I would also enjoy
+             working for a Japanese company in the U.S. that would allow me to travel to Japan and utilize my Japanese language background.
+          </p>
+        </div>
+        <!-- fun fact -->
+        <div class="fun_fact content">
+          <h1 class = "fun_fact_header">A fun fact about me:</h1>
+            <p>
+                A fun fact about me is that I have been bowling for 19 years now and was a two time All-State bowler in High School. I have bowled two 300 games and my best
+                series was a 793 when I bowled a 290, 300, and then a 203.
+            </p>
+        </div>
+        <!-- end of main wrapper div -->
+      </div>
+      <!-- end of content wrapper -->
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="footer_wrapper">
+      <p class = "footer">&#169; Tyler White </p>
+    </div>
+  </footer>
+
+  </body>
+</html>
