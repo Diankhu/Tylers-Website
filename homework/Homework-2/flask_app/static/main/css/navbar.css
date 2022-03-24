@@ -1,0 +1,180 @@
+/* Nav Bar Section*/
+:root{--main-text-color:#2B2B2B}
+/* removes the padding and margin on all of these base elements */
+a{
+  margin:0;
+  padding:0;
+}
+
+body{
+  padding:0;
+  margin:0;
+}
+img{
+  margin:0;
+  padding:0;
+
+}
+
+li{
+  margin: 0;
+  padding:0;
+}
+
+nav{
+  width:100%;
+
+  margin:0;
+  padding:0;
+
+}
+
+ul{
+  /* makes list no longer come with base styling */
+  margin: 0;
+  padding:0;
+
+}
+
+/* this scales the linkedin image */
+li a .linkedin_logo{
+  max-width: calc(.65em + 1vw);
+
+  border-radius: 50%;
+  object-fit: contain;
+}
+
+.assignment_name{
+
+  float:left;
+  display: block;
+  margin:.5em 0 .75em 1em;
+
+  align-items: center;
+  grid-column: 1;
+}
+
+
+.link{
+  text-decoration: none;
+  margin: 0 1.25em 0 1.25em;
+  opacity:.5;
+}
+/* puts the links into the second grid column and makes them start at the end of the flex container*/
+.links{
+  grid-column: 2;
+  justify-content: flex-end;
+  margin:.5em 0 .5em 0;
+}
+
+.links .list_link{
+  display:flex;
+  flex-direction:row;
+  justify-content: flex-end;
+  text-transform: uppercase;
+
+}
+
+.list_link{
+  list-style: none;
+}
+/* these are both for the checkbox for the menu bar which doesn't display unless under 650 px */
+.nav-toggle{
+  display: none;
+}
+
+.nav-toggle-label{
+  margin:0;
+  padding:0;
+  display: none;
+}
+.nav_wrapper{
+  color:var(--main-text-color);
+  background-color: #F7F7F7;
+  font-family: 'Merriweather', sans-serif;
+  font-size: calc(.65em + 1vw);
+  min-height: 1.5em;
+  /* breaks nav bar into a grid with 2 columns */
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+
+}
+#small_screen_linkedin{
+  display:none;
+}
+
+/* When screen becomes less than 650 px implement these changes*/
+@media screen and (max-width: 650px) {
+
+  /* make linkedin logo no longer display*/
+  .linkedin_logo{
+    display: none;
+  }
+
+  /* make the flex direction go from row to column causing links to stack on each other*/
+  .links .list_link{
+
+    flex-direction:column;
+  }
+
+  /* This causes the individual links to no longer appear*/
+  .list_link .link{
+    display:none;
+    margin-top: 1em;
+
+  }
+
+  /* puts the links into a new third column of the flex grid, this puts it all the way to the right */
+  .links{
+
+    grid-column: 3;
+  }
+
+  .nav-toggle-label{
+  /* causes the nav menu bar to display */
+    display:initial;
+
+    margin-right: 1.25em;
+    padding-left: 1em;
+  }
+
+  /* adjusts the dimensions of the menu bar */
+  .menu_bar{
+    max-width: calc(.65em + 6vw);
+
+    opacity:.8;
+    object-fit: contain;
+  }
+
+  .menu_bar:hover{
+    opacity:1;
+  }
+
+  /* when the toggle is checked, cause any ul .link elements at the same level to display */
+  .nav-toggle:checked ~ .list_link .link{
+    display:block;
+  }
+
+  /* same as above */
+  .nav-toggle:checked ~ .list_link #small_screen_linkedin{
+    display: block;
+  }
+}
+
+
+/*  state changes*/
+.link:link{
+  color:var(--main-text-color);
+}
+
+.link:visited{
+  color:var(--main-text-color);
+}
+
+.link:hover{
+  color:#FC4F4F;
+  opacity: 1;
+}
+.link:checked{
+  display:none;
+}
