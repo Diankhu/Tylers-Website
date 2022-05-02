@@ -33,8 +33,6 @@ var startTime;
 var totalTime;
 var timerStart = false;
 
-// game over VARIABLES
-var victory = false;
 
 // handles the end of the game
 function gameover()
@@ -53,6 +51,7 @@ function gameover()
             // use the information in returned data to add information to the popup leaderboard
             document.querySelector(".correct_word").textContent = returned_data['word'];
             scoreboard.style.display = 'block';
+            // add the users rankings, only add them if there is a user at that specific rank
             if (1 in returned_data)
             {
                 document.querySelector(".rank_1").textContent = returned_data[1][0] + " in " + (returned_data[1][1]/1000) + " seconds";
@@ -75,17 +74,6 @@ function gameover()
             }
 
 
-
-
-            if (victory === true)
-            {
-                document.querySelector(".status").textContent = "Congratulations! You guessed the Word of the Day.";
-            }
-            else if (victory === false)
-            {
-              document.querySelector(".status").textContent = "Good luck next time!";
-            }
-
           }
   });
 }
@@ -101,7 +89,7 @@ function colorsquares(e)
   for (key in e)
   {
 
-    if (key !== "Success")
+    if (key !== "Success" && key !== "correct")
     {
         // this gives the coloring a smooth transition
         gridColumn[start_index].style.transition = "background-color 1s ease-out";
@@ -150,40 +138,7 @@ function colorsquares(e)
         start_index += 1;
     }
   }
-
-  // if isSame is still true after iterating through the dictionary of color codes, then that means the inputted word
-  // is the same as the correct word. So shut off all keyboard usage
-  if (isSame === true)
-  {
-    keyboardOn = false;
-    // the user has won, stop the timer
-    var end = Date.now();
-    // convert ms to seconds
-    totalTime = (end - startTime);
-
-    // user has beat the game
-    victory = true;
-    // make a jquery call to routes to communicate the victory and store the user information
-    var data = {'time':totalTime};
-
-    // SEND DATA TO SERVER VIA jQuery.ajax({})
-    jQuery.ajax({
-        url: "/processvictory",
-        data: data,
-        type: "POST",
-        success:function(returned_data){
-              returned_data = JSON.parse(returned_data);
-              // if success is 1, then the inputted word is a valid word, the returned data will contain a dictionary of color codes for the grid row
-              // use the dictionary information to properly color the the grid row and then move onto the next row for another inputted word
-              if (returned_data["Success"] === 1)
-              {
-
-              }
-
-            }
-    });
-  return "Success";
-  }
+  return isSame;
 }
 // taken from piano.js
 // when the key goes up, bring it back to full size
@@ -226,12 +181,8 @@ function keyboardclick()
                   if (returned_data["Success"] === 1)
                   {
                     // colors the current grid row before resetting and incrementing the grid information
-                    var possibleEnd = colorsquares(returned_data);
-                    if (possibleEnd === "Success")
-                    {
-                      victory = true;
-                      gameover();
-                    }
+                    colorsquares(returned_data);
+
                     // resets the column index and the current word length
                     currentGuessRow += 1;
                     currentGuessColumn = 0;
@@ -242,18 +193,37 @@ function keyboardclick()
                     // increments the guess count
                     guessCount += 1;
                     // if the user has reached their max amount of guesses, which is the same as the size of the correct word, then turn off the keyboards functionality
-                    if (guessCount === correctWordLength)
+                    if (guessCount === correctWordLength || returned_data['correct'] === 'True')
                     {
+                      // instead of storing a victory variable, we will use the returned data instead and change the textcontent now
+                      if (returned_data['correct'] === 'True')
+                      {
+                        document.querySelector(".status").textContent = "Congratulations! You guessed the Word of the Day.";
+                      }
+                      else if (returned_data['correct'] === 'False')
+                      {
+                        document.querySelector(".status").textContent = "Good luck next time!";
+                      }
                       keyboardOn = false;
                       // the user has failed, stop the timer
                       var end = Date.now();
                       // convert ms to seconds
                       totalTime = (end - startTime);
-                      console.log(totalTime);
-                      if (victory !== true)
-                      {
-                        gameover()
-                      }
+
+                      var data = {'time': totalTime,'winner':returned_data['correct']};
+
+                      // SEND DATA TO SERVER VIA jQuery.ajax({})
+                      jQuery.ajax({
+                          url: "/processvictory",
+                          data: data,
+                          type: "POST",
+                          success:function(new_data){
+                                new_data = JSON.parse(new_data);
+                                gameover()
+                              }
+                      });
+
+
                     }
                   }
                   else
@@ -362,13 +332,8 @@ function keylog(e) {
                     returned_data = JSON.parse(returned_data);
                     if (returned_data["Success"] === 1)
                     {
-                      var possibleEnd = colorsquares(returned_data);
+                      colorsquares(returned_data);
 
-                      if (possibleEnd === "Success")
-                      {
-                        victory = true;
-                        gameover();
-                      }
                       // resets the column index and the current word length
                       currentGuessRow += 1;
                       currentGuessColumn = 0;
@@ -381,19 +346,35 @@ function keylog(e) {
                       guessCount += 1;
                       // if the guess amount is the same as the length of the correct word, then the user has no more guesses available
                       // shut off keyboard functionality
-                      if (guessCount === correctWordLength)
+                      if (guessCount === correctWordLength || returned_data['correct'] === 'True')
                       {
+                        // instead of storing a victory variable, we will use the returned data instead and change the textcontent now
+                        if (returned_data['correct'] === 'True')
+                        {
+                          document.querySelector(".status").textContent = "Congratulations! You guessed the Word of the Day.";
+                        }
+                        else if (returned_data['correct'] === 'False')
+                        {
+                          document.querySelector(".status").textContent = "Good luck next time!";
+                        }
                         keyboardOn = false;
-                        // stop the timer, the user has lost
+                        // the user has failed, stop the timer
                         var end = Date.now();
                         // convert ms to seconds
                         totalTime = (end - startTime);
 
-                        // if the user did not win with this last guess, call the gameover function
-                        if (victory !== true)
-                        {
-                          gameover()
-                        }
+                        var data = {'time': totalTime,'winner':returned_data['correct']};
+
+                        // SEND DATA TO SERVER VIA jQuery.ajax({})
+                        jQuery.ajax({
+                            url: "/processvictory",
+                            data: data,
+                            type: "POST",
+                            success:function(new_data){
+                                  new_data = JSON.parse(new_data);
+                                  gameover()
+                                }
+                        });
                       }
                     }
                     else

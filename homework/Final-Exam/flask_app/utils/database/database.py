@@ -308,11 +308,11 @@ class database:
         winner_select = self.query("SELECT * FROM victors")
         count = 1
         leaders_dict = {}
-        print(winner_select)
+
         winner_select = sorted(winner_select, key = lambda i: int(i['time']))
-        print(winner_select)
+
         for row in winner_select:
-            print(row['time'])
+            
             # only store winners that won on todays wordle
             if row['date'] == date:
                 # only take the top 5

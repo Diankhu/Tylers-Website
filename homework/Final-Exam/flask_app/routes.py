@@ -235,15 +235,31 @@ def wordvalidation():
 
 					char_dict[i] = 0
 		# add success key to show that the word was in fact found and then return the dictionary
+		is_correct = True
 		char_dict["Success"] = 1
+		# iterates through the tiles to see if they are all the same
+		for tile in char_dict:
 
+			if tile != "Success":
+				if char_dict[tile] == 1 or char_dict[tile] ==0:
+					is_correct = False
+					break
+		if is_correct == True:
+			char_dict["correct"] = 'True'
+		else:
+			char_dict["correct"] = 'False'
+		# returns if the word is correct or not so we can know if they won or not
 		return json.dumps(char_dict)
 # process a users victory
 @app.route('/processvictory', methods = ["POST","GET"])
 def processvictory():
 	form_fields = dict((key, request.form.getlist(key)[0]) for key in list(request.form.keys()))
 	# store the user information
-	db.storeNewVictor(session['email'],date.today().strftime("%m/%d/%Y"),form_fields['time'])
+	
+	# only store the victor if the user was marked as a winner
+	if form_fields['winner'] == 'True':
+
+		db.storeNewVictor(session['email'],date.today().strftime("%m/%d/%Y"),form_fields['time'])
 
 	return json.dumps({'Success': 1})
 # retrieves the top 5 users of todays wordle and the correct word of the day
