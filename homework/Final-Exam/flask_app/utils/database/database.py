@@ -65,7 +65,7 @@ class database:
 
     def createTables(self, purge=False, data_path = 'flask_app/database/'):
         if purge == True:
-            tables_drop = ["skills","experiences","positions","institutions","feedback"]
+            tables_drop = ["skills","experiences","positions","institutions","feedback",'victors']
             for drop in tables_drop:
                 drop_query = "DROP TABLE IF EXISTS " + drop
                 self.query(drop_query)
@@ -305,10 +305,14 @@ class database:
         return 1
     # handles retriving the top 5 users in terms of time taken to win
     def retrieveTop(self,date):
-        winner_select = self.query("SELECT * FROM victors ORDER BY time")
+        winner_select = self.query("SELECT * FROM victors")
         count = 1
         leaders_dict = {}
+        print(winner_select)
+        winner_select = sorted(winner_select, key = lambda i: int(i['time']))
+        print(winner_select)
         for row in winner_select:
+            print(row['time'])
             # only store winners that won on todays wordle
             if row['date'] == date:
                 # only take the top 5
@@ -316,7 +320,7 @@ class database:
                     leaders_dict[count] = row['username'],row['time']
                     count += 1
         return leaders_dict
-    
+
     def onewayEncrypt(self, string):
         encrypted_string = hashlib.scrypt(string.encode('utf-8'),
                                           salt = self.encryption['oneway']['salt'],

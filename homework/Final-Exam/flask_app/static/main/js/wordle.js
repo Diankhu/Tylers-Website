@@ -55,23 +55,23 @@ function gameover()
             scoreboard.style.display = 'block';
             if (1 in returned_data)
             {
-                document.querySelector(".rank_1").textContent = returned_data[1][0] + " in " + returned_data[1][1] + " seconds";
+                document.querySelector(".rank_1").textContent = returned_data[1][0] + " in " + (returned_data[1][1]/1000) + " seconds";
             }
             if (2 in returned_data)
             {
-                document.querySelector(".rank_2").textContent = returned_data[2][0] + " in " + returned_data[2][1] + " seconds";
+                document.querySelector(".rank_2").textContent = returned_data[2][0] + " in " + (returned_data[2][1]/1000) + " seconds";
             }
             if (3 in returned_data)
             {
-                document.querySelector(".rank_3").textContent = returned_data[3][0] + " in " + returned_data[3][1] + " seconds";
+                document.querySelector(".rank_3").textContent = returned_data[3][0] + " in " + (returned_data[3][1]/1000) + " seconds";
             }
             if (4 in returned_data)
             {
-                document.querySelector(".rank_4").textContent = returned_data[4][0] + " in " + returned_data[4][1] + " seconds";
+                document.querySelector(".rank_4").textContent = returned_data[4][0] + " in " + (returned_data[4][1]/1000) + " seconds";
             }
             if (5 in returned_data)
             {
-                document.querySelector(".rank_5").textContent = returned_data[5][0] + " in " + returned_data[5][1] + " seconds";
+                document.querySelector(".rank_5").textContent = returned_data[5][0] + " in " + (returned_data[5][1]/1000) + " seconds";
             }
 
 
@@ -159,7 +159,7 @@ function colorsquares(e)
     // the user has won, stop the timer
     var end = Date.now();
     // convert ms to seconds
-    totalTime = (end - startTime)/1000;
+    totalTime = (end - startTime);
 
     // user has beat the game
     victory = true;
@@ -177,11 +177,12 @@ function colorsquares(e)
               // use the dictionary information to properly color the the grid row and then move onto the next row for another inputted word
               if (returned_data["Success"] === 1)
               {
-                gameover();
+
               }
 
             }
     });
+  return "Success";
   }
 }
 // taken from piano.js
@@ -225,7 +226,12 @@ function keyboardclick()
                   if (returned_data["Success"] === 1)
                   {
                     // colors the current grid row before resetting and incrementing the grid information
-                    colorsquares(returned_data);
+                    var possibleEnd = colorsquares(returned_data);
+                    if (possibleEnd === "Success")
+                    {
+                      victory = true;
+                      gameover();
+                    }
                     // resets the column index and the current word length
                     currentGuessRow += 1;
                     currentGuessColumn = 0;
@@ -242,7 +248,7 @@ function keyboardclick()
                       // the user has failed, stop the timer
                       var end = Date.now();
                       // convert ms to seconds
-                      totalTime = (end - startTime)/1000;
+                      totalTime = (end - startTime);
                       console.log(totalTime);
                       if (victory !== true)
                       {
@@ -356,7 +362,13 @@ function keylog(e) {
                     returned_data = JSON.parse(returned_data);
                     if (returned_data["Success"] === 1)
                     {
-                      colorsquares(returned_data);
+                      var possibleEnd = colorsquares(returned_data);
+
+                      if (possibleEnd === "Success")
+                      {
+                        victory = true;
+                        gameover();
+                      }
                       // resets the column index and the current word length
                       currentGuessRow += 1;
                       currentGuessColumn = 0;
@@ -375,7 +387,7 @@ function keylog(e) {
                         // stop the timer, the user has lost
                         var end = Date.now();
                         // convert ms to seconds
-                        totalTime = (end - startTime)/1000;
+                        totalTime = (end - startTime);
 
                         // if the user did not win with this last guess, call the gameover function
                         if (victory !== true)
