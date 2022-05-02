@@ -1,0 +1,46 @@
+
+{% extends 'shared/layout.html' %}
+
+{% block extrainfo %}
+<title>Login</title>
+{% endblock %}
+
+{% block extracss %}
+<link rel="stylesheet"    href="{{ url_for('static', filename='main/css/login.css') }}">
+{% endblock %}
+
+
+{% block maincontent %}
+
+<div class="login_content_wrapper">
+    <div class="login_header">
+      Login
+    </div>
+
+    <br>
+    <!-- form sends login information to javascript -->
+    <form class = login_div>
+      <!-- username/email input -->
+      <input class = "login_info username" id = "username" name="username" placeholder="Your Username">
+      <br>
+      <!-- username/password input -->
+      <input class = "login_info password" id = "password" name="password" placeholder="Your Password">
+      <br>
+      <!-- the submit button -->
+      <input class = "login_info submit" type="none" value="Submit">
+      <!-- this only appears if your password is incorrect -->
+      <p class = "failure"> Your Password is Incorrect</p>
+      <!-- this only appears if you try to login with an email that has no account -->
+      <p class = "no_account"> There is no account associated with that email. Sign up <span><a href="/createaccount" class = login_link>here</a></span></p>
+    </form>
+
+
+
+</div>
+
+{% endblock %}
+{% block extrajs %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src = "static/main/js/login.js"></script>
+
+{% endblock %}

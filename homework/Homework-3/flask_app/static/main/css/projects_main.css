@@ -1,0 +1,193 @@
+/* Main Section */
+
+main{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  margin: 0;
+  padding:0;
+}
+hr
+{
+  width: 100%;
+}
+.content{
+  /* gives the content a margin from the bottom and top*/
+
+
+  /* sets the max for how wide and tall the content is, if bigger it will overflow*/
+  max-height: 50vh;
+  max-width: 80vw;
+
+  text-align: justify;
+  /*allows me to restrict how small the image gets without destroying its dimensions */
+  min-height: 20em;
+
+}
+
+.content_wrapper{
+  background-color: #E4F9F5;
+
+  width:100%;
+  display:grid;
+  justify-content: center;
+
+}
+
+.main_wrapper_div{
+  background-color: #E4F9F5;
+  display:grid;
+  /*breaks the main container into two equal columns  */
+  grid-template-columns: 1fr 1fr;
+  /*  3 rows */
+  grid-template-rows: 1fr 2fr 2fr;
+  min-height: 80vh;
+  width: 80vw;
+  /*justifies the content in the middle of their respective columns */
+  justify-content: center;
+  grid-gap: 3em;
+  /*variable definition is in navbar.css */
+  color:var(--main-text-color);
+
+}
+.piano{
+  margin:0;
+}
+
+/*styles the decription portion of the main content*/
+.piano_desc{
+
+  /* puts the description into the second grid column*/
+  grid-row: 2;
+  grid-column: 2;
+  /* this makes it so when there is overflow, a scrollbar will appear and allow the user to scroll through the information*/
+  overflow: auto;
+
+}
+
+.piano_image{
+
+  /*sets the image into the first column of the second row*/
+  grid-row: 2;
+  grid-column: 1;
+
+}
+
+.piano_image .piano_picture{
+  /* This allows me to edit the dimensions of the actual image content*/
+
+  height:100%;
+  /*stops the image from covering the entire container and ruining its proportions*/
+  width:100%;
+
+  /*cover fills the image to its container*/
+  object-fit: cover;
+  border: .15em solid #191919;
+  border-radius:5px;
+}
+
+.projects_desc{
+  margin-left: auto;
+  margin-right: auto;
+  grid-row: 1;
+  /* sets the description to span across two columns of the row */
+  grid-column: span 2;
+  display: flex;
+  justify-content: center;
+
+}
+.projects_p{
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.piano_link:hover{
+  opacity: .8;
+}
+
+.wordle_description
+{
+  /*sets the image into the second column of the third row*/
+  grid-row: 3;
+  grid-column: 2;
+}
+
+.wordle_image
+{
+  /*sets the image into the first column of the third row*/
+  grid-row: 3;
+  grid-column: 1;
+}
+
+.wordle_image .wordle_picture{
+  /* This allows me to edit the dimensions of the actual image content*/
+  height:100%;
+  /*stops the image from covering the entire container and ruining its proportions*/
+  width:100%;
+
+  /*cover fills the image to its container*/
+  object-fit: cover;
+  border: .15em solid #191919;
+  border-radius:5px;
+}
+
+.wordle_link:hover{
+  opacity: .8;
+}
+
+/* when the screen is mobile size, it will adjust all the content into one column */
+@media screen and (max-width: 650px) {
+
+  .content{
+    width: 80vw;
+    /* helps center the content*/
+    margin-left: auto;
+    margin-right: auto;
+
+  }
+  .main_wrapper_div{
+    /* changes the grid formation into 1 column and 2 rows*/
+    display:grid;
+    grid-template-columns: 1fr;
+    /*this sets the size of each row, the second row can be larger due to more content being in it*/
+    grid-template-rows: 1fr 1fr 1.2fr 1fr 1.5fr;
+    justify-content:center;
+    max-height:none;
+  }
+
+  .projects_desc{
+
+    grid-column: 1;
+    grid-row: 1;
+
+  }
+
+  .piano_image{
+    grid-column: 1;
+    grid-row: 2;
+
+  }
+
+  .piano_desc{
+    margin-top: 0;
+    grid-column: 1;
+    grid-row: 3;
+    text-align: justify;
+    /* this makes the overflow visible and no longer hides it or adds a scroll bar*/
+    overflow: visible;
+  }
+
+  .wordle_image
+  {
+    grid-column: 1;
+    grid-row: 4;
+  }
+
+  .wordle_desc
+  {
+    grid-column: 1;
+    grid-row: 5;
+    text-align: justify;
+    /* this makes the overflow visible and no longer hides it or adds a scroll bar*/
+    overflow: visible;
+  }
+}

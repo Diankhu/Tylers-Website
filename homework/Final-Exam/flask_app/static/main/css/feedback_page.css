@@ -1,0 +1,50 @@
+/* defaults the base elements margin and padding */
+h1{
+  margin: 0;
+  padding:0;
+}
+
+h2{
+  margin: 0;
+  padding:0;
+}
+
+p{
+  margin: 0;
+  padding:0;
+}
+/* styles the main content page for feedback */
+.feedback_content{
+  font-family: 'Montserrat', sans-serif;
+  background-color: #E4F9F5;
+  min-height: 80vh;
+}
+/* this handles the wrapper that holds the header statement */
+.feedback_wrapper{
+  display:flex;
+  justify-content: center;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+/* styles the header */
+.feedback_header{
+  font-size: calc(.5em + 1vw);
+}
+.feedback_line_name{
+  display:inline;
+
+}
+.feedback_line_comment{
+  display:inline;
+}
+/* div containing the feedback name and comment */
+.feedback_line_wrapper{
+  padding-top: 5px;
+  padding-bottom: 5px;
+  /* styles the items like a list so it gives it a bullet point */
+  display:list-item;
+  /* makes the bullet point start inside the div */
+  list-style-position: inside;
+  padding-left: 5%;
+  font-size: calc(.35em + .6vw);
+}

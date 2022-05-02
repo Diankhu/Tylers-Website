@@ -1,0 +1,190 @@
+
+:root{--black-key-color:#040303}
+
+/* this just gives the key frame a little room on the left and right side of the piano */
+.all_keys{
+  margin-left: 3%;
+  margin-right: 3%;
+
+}
+
+/* style for the base div of the piano */
+.base{
+
+  background-color: #222831;
+
+  /* centers the x*/
+  margin: auto;
+  /* this rounds the corners of the div*/
+  border-top-left-radius: 15%;
+  border-top-right-radius: 15%;
+  min-width: 600px;
+  min-height: 600px;
+  width:50em;
+  height: 44em;
+  max-width: 850px;
+  max-height: 800px;
+
+
+}
+
+/* this styles each individual black key */
+.black_key{
+  background-color: var(--black-key-color);
+  width:3em;
+  height:247.5px;
+
+  /* this gives the keys that circular edges */
+  border-radius: 10px;
+  position:absolute;
+}
+
+/* positions the code characters for the black keys */
+.black_key_code{
+  color: #F5F5F5;
+  text-align: center;
+  margin-top: 195px;
+}
+
+/* positions the first black key group */
+.black_key_group_1{
+
+  display: flex;
+  flex-direction: row;
+  left:51px;
+  position:absolute;
+}
+
+/* positions the second black key group */
+.black_key_group_2{
+
+  display: flex;
+  flex-direction: row;
+  left:276px;
+  position:absolute;
+}
+
+/* positions the third black key group */
+.black_key_group_3{
+
+  display: flex;
+  flex-direction: row;
+  left:577px;
+  position:absolute;
+}
+
+/* this helps position every black key so they are vertically at the same position */
+.black_key_wrapper{
+
+  display: flex;
+  flex-direction: row;
+  /* takes them out of the flow and allows them to be layered */
+  position: absolute;
+  margin-top:0;
+  /* makes sure that they stay on top of the white keys */
+  z-index: 100;
+}
+
+/* this changes the code on every key to display nothing */
+.code{
+  opacity:0;
+  transition: opacity 150ms;
+}
+
+/* styles the description of th epiano */
+.description{
+  color:#F5F5F5;
+  width:50%;
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10%;
+}
+.great_old_one
+{
+  position:absolute;
+  opacity:0;
+  z-index: 0;
+  transition: opacity 900ms;
+}
+/* styles the font family of the all the key codes */
+.key{
+  font-family: 'Montserrat', sans-serif;
+  transform:scale(1);
+  transition: transform 300ms ease-in-out;
+}
+
+/* this positions the second key of each black key group */
+.key_position{
+  left:75.5px;
+}
+/* this positions the 3 key of the second black key group */
+.key_15{
+  left:151px;
+
+}
+
+/* styles the main content section of the projects page */
+.main_wrapper_div{
+  background-color: #E4F9F5;
+  /*breaks the main container into two equal columns  */
+  display:grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 3fr;
+  min-height: 100vh;
+  min-width: 80vw;
+  /*justifies the content in the middle of their respective columns */
+  justify-content: center;
+  grid-gap: 3em;
+  font-family: 'Special Elite', cursive;
+  /*variable definition is in navbar.css */
+  color:var(--main-text-color);
+  position:relative;
+  padding-bottom: 10%;
+  padding-top: 5%;
+}
+
+/* styles for the poem above the piano */
+.poem{
+
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  min-width: 40vh;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+/* handles the positioning for the codes on the white keys */
+.white_key_code{
+  text-align: center;
+  margin-top: 345px;
+  color: var(--main-text-color);
+}
+
+/* is the container div for all the white keys */
+.white_key_wrapper{
+  position:relative;
+  margin-top: 18%;
+  /* positions them all adjacent */
+  display: flex;
+  flex-direction: row;
+
+}
+
+/* style for each individual white key */
+.white_key{
+  background-color: #F5F5F5;
+  width:4.5em;
+  /* sets the vertical positioning */
+  height:404px;
+  /* gives the key a border */
+  border: .25em solid #191919;
+  /* gives the key the rounded shape */
+  border-radius: 10px;
+
+}
+#piano_description{
+  z-index: 1001;
+}

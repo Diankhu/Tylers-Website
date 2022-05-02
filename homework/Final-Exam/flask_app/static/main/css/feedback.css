@@ -1,0 +1,87 @@
+/* this styles the feedback form and the feedback button */
+
+
+/* this makes the checkbox associated with the button to not display */
+.button_toggle{
+  display:none;
+}
+
+.button-toggle-label{
+  margin:0;
+  padding:0;
+}
+
+.feedback_button{
+  /* styling for the button */
+  position:fixed;
+  border: none;
+  color: white;
+  background-color: #1F1D36;
+  padding-bottom: 10px;
+  padding-top: 8px;
+  padding-right:12px;
+  padding-left:12px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  border-radius: 5px;
+}
+
+.feedback_button_wrapper{
+  /* this keeps the button fixed at the same position no matter where you scroll */
+  position: fixed;
+  right:16px;
+  bottom: 50%;
+  /* rotates the button */
+  transform: rotate(-90deg);
+  /* makes the rotation occur from the right outer edge, this makes it rotate and stay on the wall */
+  transform-origin: right;
+  /* makes the button always appear on top */
+  z-index: 10000;
+}
+
+/* changes the opacity when the button is hovered */
+.feedback_button:hover{
+  opacity:.5;
+}
+
+/* gives the comment section more height than the others */
+#feedback_comment{
+  height:80px;
+}
+
+/* this styles the div that contains all the inputs for the feedback form */
+.feedback_form_wrapper{
+  display:none;
+  width:300px;
+  height:350px;
+  background-color: #1F1D36;
+  position:fixed;
+  top:25vh;
+  left:calc(50vw - 150px );
+  z-index: 10000;
+}
+
+/* this styles each input in the feedback form */
+.forms{
+  width:240px;
+  height:30px;
+  margin-top: 15px;
+  margin-bottom:15px;
+  margin-left: 30px;
+  margin-right:30px;
+}
+
+/* this styles the submit button */
+.form_button{
+  height:45px;
+}
+
+/* this adjusts margin for the top form */
+.top_form{
+  margin-top: 30px;
+}
+/* state changes */
+/* when toggled this caused the feedback form to appear */
+.button_toggle:checked ~ .feedback_form_wrapper{
+  display:initial;
+}

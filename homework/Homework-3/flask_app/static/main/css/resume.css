@@ -1,0 +1,115 @@
+/* defaults the base elements margin and padding */
+h1{
+  margin: 0;
+  padding:0;
+}
+
+h2{
+  margin: 0;
+  padding:0;
+}
+
+p{
+  margin: 0;
+  padding:0;
+}
+
+.address{
+  text-align: right;
+}
+
+.content{
+  /* gives the content a margin from the bottom and top*/
+  padding-top: 3.5%;
+  padding-bottom: 3.5%;
+  padding-left: 5%;
+  padding-right: 5%;
+  /* sets the max for how wide and tall the content is, if bigger it will overflow*/
+  font-family: 'Montserrat', sans-serif;
+  text-align: justify;
+  /*allows me to restrict how small the content gets */
+  min-height: 75vh;
+  max-height: 100vh;
+  background-color: #E4F9F5;
+}
+/* styles the institution name */
+.institution
+{
+  color:#18453b;
+  font-size: calc(.5em + 1.5vw);
+}
+
+.institution_address{
+  min-height: 30px;
+  width:50%;
+  float:right;
+  margin-top: 1%;
+  font-size: calc(.35em + .6vw);
+}
+/* div that holds the institution name */
+.institution_box{
+  min-height: 30px;
+  /* width and float allows me to have divs in the same row as each other allows address and name to aligned */
+  width:50%;
+  float: left;
+  /* using flex to allow to justify content to the front */
+  display: flex;
+  justify-content: flex-start;
+}
+/* styles the ul for the experiences */
+.experiences_list{
+  font-size: calc(.35em + .5vw);
+  /* this makes the bullet points start inside the container */
+  list-style-position: inside;
+}
+/* this is the style for the position title */
+.position{
+  color:#18453b;
+  /* makes the color of positions a little duller than the institution */
+  opacity: .70;
+  font-size:calc(.42em + 1.2vw);
+
+}
+/* div that holds the title of the position */
+.position_title_div{
+  min-height: 30px;
+  /* allows me to have the title and date to be aligned with each other */
+  width:50%;
+  float:left;
+}
+/* div that holds the date of the position */
+.position_date_div{
+  min-height: 30px;
+  width:50%;
+  float:right;
+  font-size: calc(.35em + .6vw);
+}
+
+.position_date{
+  text-align: right;
+  margin-bottom: 5%;
+}
+
+.position_description{
+  font-size: calc(.35em + .5vw);
+  padding-bottom: 1%;
+}
+/* used to give a padding between each position at an institution */
+.position_wrapper{
+  padding-bottom: 2%;
+}
+/* styles the individual skills */
+.skills{
+  float: left;
+  font-size: calc( .4em + .35vw);
+  /* gives the margin a dynamic size so it stays aligned with the experience name */
+  margin-left: calc( 5px + .6%);
+}
+/* this is used for spacing in between skill names */
+.space{
+  margin-left: 5px;
+}
+/* used for spacing after each institution */
+.spacing{
+  padding-bottom: 5%;
+}
