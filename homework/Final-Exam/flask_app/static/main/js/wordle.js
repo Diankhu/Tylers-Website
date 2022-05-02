@@ -53,11 +53,30 @@ function gameover()
             // use the information in returned data to add information to the popup leaderboard
             document.querySelector(".correct_word").textContent = returned_data['word'];
             scoreboard.style.display = 'block';
-            document.querySelector(".rank_1").textContent = returned_data[1][0] + " in " + returned_data[1][1] + " seconds";
-            document.querySelector(".rank_2").textContent = returned_data[2][0] + " in " + returned_data[2][1] + " seconds";
-            document.querySelector(".rank_3").textContent = returned_data[3][0] + " in " + returned_data[3][1] + " seconds";
-            document.querySelector(".rank_4").textContent = returned_data[4][0] + " in " + returned_data[4][1] + " seconds";
-            document.querySelector(".rank_5").textContent = returned_data[5][0] + " in " + returned_data[5][1] + " seconds";
+            if (1 in returned_data)
+            {
+                document.querySelector(".rank_1").textContent = returned_data[1][0] + " in " + returned_data[1][1] + " seconds";
+            }
+            if (2 in returned_data)
+            {
+                document.querySelector(".rank_2").textContent = returned_data[2][0] + " in " + returned_data[2][1] + " seconds";
+            }
+            if (3 in returned_data)
+            {
+                document.querySelector(".rank_3").textContent = returned_data[3][0] + " in " + returned_data[3][1] + " seconds";
+            }
+            if (4 in returned_data)
+            {
+                document.querySelector(".rank_4").textContent = returned_data[4][0] + " in " + returned_data[4][1] + " seconds";
+            }
+            if (5 in returned_data)
+            {
+                document.querySelector(".rank_5").textContent = returned_data[5][0] + " in " + returned_data[5][1] + " seconds";
+            }
+
+
+
+
             if (victory === true)
             {
                 document.querySelector(".status").textContent = "Congratulations! You guessed the Word of the Day.";
@@ -406,7 +425,7 @@ function keylog(e) {
 
           if(currentGridBox === 0 && timerStart === false)
           {
-            
+
             startTime = Date.now();
 
             timerStart = true;
