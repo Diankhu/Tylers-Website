@@ -21,9 +21,6 @@ RUN service mysql start && mysql -e "CREATE USER 'master'@'localhost' IDENTIFIED
 RUN apt -y install python3-pip
 RUN apt -y install vim
 RUN mkdir /app
-# Ensure output directory exists
-RUN mkdir -p /app/public
-RUN cp -r /app/build/* /app/public/  
 COPY . /app
 WORKDIR /app
 RUN pip install --upgrade pip
