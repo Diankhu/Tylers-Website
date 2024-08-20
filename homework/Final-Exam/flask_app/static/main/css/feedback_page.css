@@ -16,7 +16,7 @@ p{
 /* styles the main content page for feedback */
 .feedback_content{
   font-family: 'Montserrat', sans-serif;
-  background-color: #E4F9F5;
+  background-color: #f5f5f5;
   min-height: 80vh;
 }
 /* this handles the wrapper that holds the header statement */

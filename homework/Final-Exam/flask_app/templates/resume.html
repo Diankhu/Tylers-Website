@@ -23,13 +23,15 @@
           <!-- checks for null or none values in the city and address and prints accordingly -->
           {% if inst['state'] != "NULL" and inst['state'] != "" and inst['city'] != "NULL" and inst['city'] != ""%}
             <p class = "address"> {{ inst['city']}}, {{ inst['state']}}</p>
-          {% elif inst['state'] == "NULL" or inst['state'] == "" and inst['city'] != "NULL"  %}
+          {% elif inst['state'] == "NULL" and inst['city'] != "NULL"  %}
             <p class = "address"> {{ inst['city']}}</p>
           {% elif inst['state'] != "NULL" and inst['city'] == "NULL" or inst['city'] == "" %}
             <p class = "address"> {{ inst['state']}}</p>
+          {% else %}
+            <p class = "address"> </p>
           {% endif %}
         </div>
-          <!-- if positions ditionary is not empty -->
+          <!-- if positions dictionary is not empty -->
           {% if inst['positions'] != {} %}
             <!-- for each position, generate a row -->
             {% for pos_id, pos in inst['positions'].items() %}
@@ -47,7 +49,12 @@
                   <p class = "position_date"> {{ pos['start_date']}}</p>
                 {% endif %}
               </div>
-              <p class = "position_description">{{ pos['responsibilities']}}</p>
+              {% if pos['responsibilities'] != "NULL" %}
+                <p class = "position_description">{{ pos['responsibilities']}}</p>
+              {% else %}
+                <p class = "position_description"></p>
+              {% endif %}
+
               <!-- if experiences for the position is not empty -->
               {% if pos['experiences'] != {} %}
               <!-- start a unordered list -->

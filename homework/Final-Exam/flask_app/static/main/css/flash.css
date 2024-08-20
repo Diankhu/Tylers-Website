@@ -1,0 +1,267 @@
+/*  CSS styling sheet for the flashcard project */
+main
+{
+  background-color: #f5f5f5;
+  /*breaks the main container into two equal columns  */
+  min-height: 100vh;
+  min-width: 80vw;
+  font-family: 'Montserrat', sans-serif;
+  background-image: linear-gradient(to right, #FFB7C5 35%, transparent),url("cherry_blossom.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.flash_wrapper_div
+{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 2vh 0 2vh 2vw;
+}
+.card_count
+{
+  grid-row: 2;
+}
+.deck_id
+{
+  display:none;
+}
+.deck
+{
+  margin-left: 2vw;
+  width: calc(24vw + 30px);
+  height: calc(10vh + 80px);
+  
+  border-radius: 5px;
+  margin-top: calc(1vh + 15px);
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  text-align: center;
+  cursor:pointer;
+  font-size: calc(.45vh + .45vw + 10px);
+  border: medium solid #084477;
+  box-shadow: 0 0 3px #084477;
+  transition: border .3s ease-in-out;
+  background: linear-gradient(90deg,#BFEAF5,#FFFFFF);
+}
+.deck:hover
+{
+  border-color: #FC4F4F;
+}
+.deck_name
+{
+  margin-top:calc(.7vh + 3px);
+  grid-column: span 3;
+  font-size: calc(.7vh + .7vw + 5px);
+  text-align: center;
+}
+.new_deck
+{
+  color: black ;
+  width: calc(17vw + 30px);
+  height: calc(6vh + 70px);
+  margin-top: calc(3vh + 20px);
+  display:flex;
+  margin-left:5.5vw;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(.8vh + .8vw + 8px);
+  text-decoration: none;
+  transition: border .3s ease-in-out;
+  cursor: pointer;
+  background: linear-gradient(90deg,#BFEAF5,#FFFFFF);
+  border-radius:50px;
+  border: medium solid #084477;
+  box-shadow: 0 0 3px #084477;
+  font-size: calc(1vw + 1vh + 3px);
+}
+.new_deck:hover
+{
+  border-color: #FC4F4F;
+}
+
+
+.project_info
+{
+  grid-column: span 3;
+  text-align: center;
+  padding-top: 3%;
+  padding-bottom: calc(3% + 5px);
+}
+.project_desc
+{
+  padding-top: 1.5%;
+  font-size: calc(1vw + 1vh + 3px);
+}
+.project_title
+{
+  font-size: calc(1.8vw + 1.32vh + 5px);
+}
+
+/*petals*/
+
+.petals
+{
+  /*blends the image background into the website background color*/
+  mix-blend-mode: multiply;
+
+}
+.petal
+{
+  /*gives all petals absolute positioning and sizes them*/
+  position:absolute;
+  width: calc(5% + 12px);
+  height: calc(10% + 5px);
+  top:10%;
+}
+/*give each petal an animation so they have different start times and can restart at the top independently*/
+.petal1
+{
+  animation:falling 15s linear infinite;
+  left: 5%;
+
+}
+.petal12
+{
+  animation:falling 15s linear infinite;
+  left: 9%;
+  animation-delay: -7s;
+}
+.petal13
+{
+  animation:falling 15s linear infinite;
+  left: 18%;
+  animation-delay: -9.5s;
+}
+.petal2
+{
+  /*negative delay makes it so some leaves first start earlier than others, but when it reiterates, it still goes to
+  the beginning, if you change their top position, the animation will always start from that top position. Delay
+  allows the first iteration to be ahead to make the leaves look more natural*/
+  animation:falling 15s linear infinite;
+  left: 16%;
+  animation-delay: -3s;
+}
+.petal9
+{
+  animation:falling 15s linear infinite;
+  left: 30%;
+  animation-delay: -6s;
+}
+.petal3
+{
+  animation:falling 15s linear infinite;
+  left: 25%;
+  animation-delay: -1s;
+}
+.petal4
+{
+  animation:falling 15s linear infinite;
+  left: 40%;
+  animation-delay: -10s;
+
+}
+.petal11
+{
+  animation:falling 15s linear infinite;
+  left: 45%;
+
+}
+.petal5
+{
+  animation:falling 15s linear infinite;
+  left: 50%;
+  animation-delay: -5s;
+}
+
+.petal6
+{
+  animation:falling 15s linear infinite;
+  left: 62%;
+  animation-delay: -2s;
+}
+.petal10
+{
+  animation:falling 15s linear infinite;
+  left: 67%;
+  animation-delay: -8s;
+}
+.petal7
+{
+  animation:falling 15s linear infinite;
+  left: 72%;
+
+}
+.petal8
+{
+  animation:falling 10s linear infinite;
+  left: 82%;
+  animation-delay: -2s;
+}
+
+@keyframes falling
+{
+  0%
+  {
+    opacity:0;
+  }
+  10%
+  {
+    opacity:1;
+  }
+  95%
+  {
+    top:10%;
+    transform: translateY(100vh) rotate(360deg);
+  }
+  100%
+  {
+    opacity:0;
+  }
+}
+
+
+@media screen and (max-width: 1100px) {
+
+.flash_wrapper_div
+{
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+
+  justify-content: center;
+}
+.project_info
+{
+  grid-column: 1;
+  text-align: center;
+  padding-top: 3%;
+  padding-bottom: calc(3% + 5px);
+}
+.deck
+{
+  width: calc(42% + 45px);
+  height: calc(35% + 70px);
+  margin-top: calc(4vh + 40px);
+  margin-left:calc(50% - (42% + 45px)/2);
+  font-size: calc(.3vh + .3vw + 8px);
+}
+
+.new_deck
+{
+  width: calc(38% + 35px);
+  height: calc(35% + 70px);
+  margin-top: calc(4vh + 40px);
+
+  margin-left:calc(50% - (38% + 35px)/2);
+  font-size: calc(.8vh + .8vw + 8px);
+  border-radius:30px;
+}
+
+.petal
+{
+  /*gives all petals absolute positioning and sizes them*/
+  position:absolute;
+  width: calc(5% + 4.8px);
+  height: calc(4% + 2px);
+  top:10%;
+}
+
+}

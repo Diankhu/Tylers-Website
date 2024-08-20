@@ -1,0 +1,86 @@
+{% extends 'shared/layout.html' %}
+
+{% block extrainfo %}
+<title>Flashcard Project</title>
+
+{% endblock %}
+
+{% block extracss %}
+<link rel="stylesheet"    href="{{ url_for('static', filename='main/css/flash.css') }}">
+{% endblock %}
+
+{% block maincontent %}
+<!--- main content --->
+
+  <main>
+    <!--- div wraps around all the content --->
+    <div class="flash_wrapper_div">
+        <div class="project_info">
+            <div class="project_title">
+                Flashcards
+            </div>
+            <div class="project_desc">
+                Click on a deck to get started or create your own new deck.
+            </div>
+        </div>
+        {# display the available decks to the user   #}
+        {% for i in decks %}
+            <div class = "deck">
+                {% for key,value in i.items() %}
+                    {#   this keeps the deck id accessible for when a user clicks on it, the front end can retrieve it#}
+
+                    {% if key == "name" %}
+                        <div class="deck_name">
+                            {{value|capitalize }}
+                        </div>
+                    {% elif key == "deck_id"%}
+                        <div class = "deck_id">
+                            {{ value }}
+                        </div>
+
+                    {% elif key != "words" and key != "deck_id" and key != "user_id"%}
+                        <div class="deck_info">
+                            {{ key|capitalize }}: {{ value }}
+                        </div>
+
+
+                    {% endif %}
+                {% endfor %}
+                {% for t,y in deck_counts.items() %}
+                    {% if i['deck_id'] == t%}
+                        <div class="deck_info card_count">
+                            Count: {{ y }}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        {% endfor %}
+
+        <a href="/NewDeck" class = new_deck>Create New Deck</a>
+        <div class = 'petals'>
+            <img src="static/main/images/test.png" alt="sakura petals" loading="lazy" class ="petal1 petal">
+            <img src="static/main/images/test.png" alt="sakura petals" loading="lazy" class ="petal2 petal">
+            <img src="static/main/images/test.png" alt="sakura petals" loading="lazy" class ="petal3 petal">
+            <img src="static/main/images/test.png" alt="sakura petals" loading="lazy" class ="petal4 petal">
+            <img src="static/main/images/test.png" alt="sakura petals" loading="lazy" class ="petal5 petal">
+            <img src="static/main/images/test.png" alt="sakura petals" loading="lazy" class ="petal6 petal">
+            <img src="static/main/images/test.png" alt="sakura petals" loading="lazy" class ="petal7 petal">
+            <img src="static/main/images/test.png" alt="sakura petals" loading="lazy" class ="petal8 petal">
+            <img src="static/main/images/test.png" alt="sakura petals" loading="lazy" class ="petal9 petal">
+            <img src="static/main/images/test.png" alt="sakura petals" loading="lazy" class ="petal10 petal">
+            <img src="static/main/images/test.png" alt="sakura petals" loading="lazy" class ="petal11 petal">
+            <img src="static/main/images/test.png" alt="sakura petals" loading="lazy" class ="petal12 petal">
+            <img src="static/main/images/test.png" alt="sakura petals" loading="lazy" class ="petal13 petal">
+        </div>
+
+    </div>
+
+  </main>
+{% endblock %}
+
+{% block extrajs %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- the script implementation for the javascript associated with this page put at bottom so it will load last -->
+<script src = "static/main/js/flash.js">
+</script>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'shared/layout.html' %}
+
+{% block extrainfo %}
+<title>Othello</title>
+
+{% endblock %}
+
+{% block extracss %}
+<link rel="stylesheet"    href="{{ url_for('static', filename='main/css/othello.css') }}">
+{% endblock %}
+
+{% block maincontent %}
+<!--- main content --->
+<main>
+
+    <!--- div wraps around all the content --->
+    <div class="content_wrapper">
+        <div class="game_title" >
+            <p>Othello</p>
+        </div>
+        <div class = "grid">
+            {#   each row         #}
+            {% for x in range(grid_size) %}
+                {# creates each grid item in each row#}
+                {% for y in range(grid_size) %}
+                    <div class = "grid_item " data-value ={{ x }}{{ y }}>
+                        <div class = "chip"></div>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+
+        <div  method = "post" class = game_start_form>
+
+            <label for="difficulty" class = "label difficulty_label">Opponent Difficulty:  </label>
+            <select id = "difficulty" name="difficulty"  required class="info_box difficulty">
+                <option hidden disabled selected value> Select </option>
+                <option  value="Easy">Easy</option>
+                <option  value="Intermediate">Intermediate</option>
+                <option  value="Hard">Hard</option>
+                <option  value="Extreme">Extreme</option>
+            </select>
+            <input type="submit" id = 'start_button' class = 'button start_button' value = 'Start'>
+            <input type="submit" id = 'end_button' class = 'button end_button' value = 'End Game'>
+        </div>
+
+
+
+      <!-- end of content wrapper div -->
+    </div>
+
+</main>
+{% endblock %}
+
+{% block extrajs %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- the script implementation for the javascript associated with this page put at bottom so it will load last -->
+<script src = "static/main/js/othello.js">
+</script>
+{% endblock %}

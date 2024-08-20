@@ -11,38 +11,40 @@ from datetime import date
 from cryptography.fernet import Fernet
 from math import pow
 
+
 class database:
 
-    def __init__(self, purge = False):
+    def __init__(self, purge=False):
 
         # Grab information from the configuration file
-        self.database       = 'db'
-        self.host           = '127.0.0.1'
-        self.user           = 'master'
-        self.port           = 3306
-        self.password       = 'master'
-        self.tables         = ['institutions', 'positions', 'experiences', 'skills','feedback', 'users','victors','words']
+        self.database = 'db'
+        self.host = '127.0.0.1'
+        self.user = 'master'
+        self.port = 3306
+        self.password = 'master'
+        self.tables = ['institutions', 'positions', 'experiences', 'skills', 'feedback', 'users', 'victors',
+                       'words', 'decks', 'cards']
 
         # NEW IN HW 3-----------------------------------------------------------------
-        self.encryption     =  {   'oneway': {'salt' : b'averysaltysailortookalongwalkoffashortbridge',
-                                                 'n' : int(pow(2,5)),
-                                                 'r' : 9,
-                                                 'p' : 1
-                                             },
-                                'reversible': { 'key' : '7pK_fnSKIjZKuv_Gwc--sZEMKn2zc8VvD6zS96XcNHE='}
-                                }
-        #-----------------------------------------------------------------------------
+        self.encryption = {'oneway': {'salt': b'averysaltysailortookalongwalkoffashortbridge',
+                                      'n': int(pow(2, 5)),
+                                      'r': 9,
+                                      'p': 1
+                                      },
+                           'reversible': {'key': '7pK_fnSKIjZKuv_Gwc--sZEMKn2zc8VvD6zS96XcNHE='}
+                           }
+        # -----------------------------------------------------------------------------
 
-    def query(self, query = "SELECT * FROM users", parameters = None):
+    def query(self, query="SELECT * FROM users", parameters=None):
 
-        cnx = mysql.connector.connect(host     = self.host,
-                                      user     = self.user,
-                                      password = self.password,
-                                      port     = self.port,
-                                      database = self.database,
-                                      charset  = 'latin1'
-                                     )
-
+        cnx = mysql.connector.connect(host=self.host,
+                                      user=self.user,
+                                      password=self.password,
+                                      port=self.port,
+                                      database=self.database,
+                                      use_unicode=True,
+                                      charset='utf8'
+                                      )
 
         if parameters is not None:
             cur = cnx.cursor(dictionary=True)
@@ -63,9 +65,9 @@ class database:
         cnx.close()
         return row
 
-    def createTables(self, purge=False, data_path = 'flask_app/database/'):
+    def createTables(self, purge=False, data_path='flask_app/database/'):
         if purge == True:
-            tables_drop = ["skills","experiences","positions","institutions","feedback",'victors']
+            tables_drop = ["skills", "experiences", "positions", "institutions", "feedback", 'victors']
             for drop in tables_drop:
                 drop_query = "DROP TABLE IF EXISTS " + drop
                 self.query(drop_query)
@@ -78,17 +80,18 @@ class database:
             self.query(sql_file)
             raw_file.close()
 
-        sql_tables = ['institutions.sql','feedback.sql','positions.sql','experiences.sql','skills.sql','users.sql',"words.sql","victors.sql"]
+        sql_tables = ['institutions.sql', 'feedback.sql', 'positions.sql', 'experiences.sql', 'skills.sql', 'users.sql',
+                      "words.sql", "victors.sql", "decks.sql", "cards.sql"]
 
         # goes through each table and creates it
         for table in sql_tables:
             correct_path = data_path + 'create_tables/' + table
             executeFileScripts(correct_path)
 
-        tables_csv = ['institutions','positions','experiences','skills']
+        tables_csv = ['institutions', 'positions', 'experiences', 'skills', 'decks']
         # iterates through tables with csv data
         for x in tables_csv:
-            csv_file = data_path + 'initial_data/' + x +'.csv'
+            csv_file = data_path + 'initial_data/' + x + '.csv'
             file = open(csv_file)
             reader = csv.reader(file)
             header = []
@@ -101,10 +104,9 @@ class database:
             for row in reader:
                 # pops the value that would have went with the unique id number
                 row.pop(0)
-                self.insertRows(x,header,row)
+                self.insertRows(x, header, row)
 
-
-    def insertRows(self, table='table', columns=['x','y'], parameters=[['v11','v12'],['v21','v22']]):
+    def insertRows(self, table='table', columns=['x', 'y'], parameters=[['v11', 'v12'], ['v21', 'v22']]):
 
         insert_statement = "INSERT INTO " + table + "("
         counter = 0
@@ -128,16 +130,16 @@ class database:
                 values += ","
         insert_statement += ")"
         values += ")"
-        self.query(insert_statement,parameters)
+        self.query(insert_statement, parameters)
 
     def getResumeData(self):
         # Pulls data from the database to genereate data like this:
 
         # retrieve all the tables
-        instituion_select= self.query("SELECT * FROM institutions")
-        position_select= self.query("SELECT * FROM positions")
-        experience_select= self.query("SELECT * FROM experiences")
-        skill_select= self.query("SELECT * FROM skills")
+        instituion_select = self.query("SELECT * FROM institutions")
+        position_select = self.query("SELECT * FROM positions")
+        experience_select = self.query("SELECT * FROM experiences")
+        skill_select = self.query("SELECT * FROM skills")
         # end of table retrieval
         resume_data_dict = dict()
         inst_counter = 1
@@ -195,7 +197,6 @@ class database:
                             for skill_row in skill_select:
                                 # if the experience id's are the same then the skill is for this experience
                                 if exp_row['experience_id'] == skill_row['experience_id']:
-
                                     # set up skill dictionary nesting
                                     skills_dict = specific_exp_dict['skills']
                                     skills_dict[skills_counter] = dict()
@@ -213,18 +214,17 @@ class database:
             inst_counter += 1
         # end of resume dictionary creation
 
-
         return resume_data_dict
 
-#######################################################################################
-# AUTHENTICATION RELATED
-#######################################################################################
+    #######################################################################################
+    # AUTHENTICATION RELATED
+    #######################################################################################
     #  checks if the email is in the user database
     def checkEmail(self, email='me@email.com'):
         # retrieve user data table
         availableEmail = True
         # grab the user database information
-        user_select= self.query("SELECT * FROM users")
+        user_select = self.query("SELECT * FROM users")
         # iterate through the users
         for row in user_select:
             # if any email in the user select equals the inputted email, then it is already in use
@@ -235,17 +235,19 @@ class database:
             return 0
         else:
             return 1
+
     # creates the user
     def createUser(self, email='me@email.com', password='password', role='user'):
         # checks if the email is already in the database
         available = self.checkEmail(email)
         # if the email is not in the database then insert the new user information
         if available == 1:
-            self.insertRows('users',['role','email','password'],[role,email,self.onewayEncrypt(password)])
+            self.insertRows('users', ['role', 'email', 'password'], [role, email, self.onewayEncrypt(password)])
             return {'Success': 1}
         # else return with no success
         else:
             return {'Success': 0}
+
     # checks that there is a email with the associated password in the database
     def authenticate(self, email='me@email.com', password='password'):
         # first checks if the email is in the database
@@ -253,7 +255,7 @@ class database:
         #  0 means that the email is already in the database
         if available == 0:
             # grab the user information
-            user_select= self.query("SELECT * FROM users")
+            user_select = self.query("SELECT * FROM users")
             # iterate through the users and try to match the email with the inputted email
             for row in user_select:
 
@@ -265,14 +267,15 @@ class database:
         # if available is not 0, then the email does not exist in the database
         else:
             # this means the account has been taken
-            return {"Account": 1,"Success":0}
+            return {"Account": 1, "Success": 0}
         # if the function has not returned a success yet, then it must have failed
         return {'Success': 0}
+
     # function that checks if a date is already in the word database
-    def checkDate(self,current_date):
+    def checkDate(self, current_date):
         date_used = False
         # grab the user database information
-        word_select= self.query("SELECT * FROM words")
+        word_select = self.query("SELECT * FROM words")
         # iterate through the users
         for row in word_select:
             # if any email in the user select equals the inputted email, then it is already in use
@@ -284,52 +287,55 @@ class database:
             return 1
         else:
             return 0
+
     # function that stores a new word with its correlating date
     def storeNewWord(self, date, word):
         # insert the new word
-        self.insertRows('words',['date','word'],[date,word])
+        self.insertRows('words', ['date', 'word'], [date, word])
         return 1
-    def getWord(self,date):
+
+    def getWord(self, date):
         # grab the user database information
-        word_select= self.query("SELECT * FROM words")
+        word_select = self.query("SELECT * FROM words")
         # iterate through the users
         for row in word_select:
             # find the row that has the same date and return that word
             if row["date"] == date:
                 return row["word"]
         return 0
+
     # function that stores the winners information
-    def storeNewVictor(self, username ,date, time):
+    def storeNewVictor(self, username, date, time):
         # insert the the new winner
-        self.insertRows('victors',['username','date','time'],[username,date,time])
+        self.insertRows('victors', ['username', 'date', 'time'], [username, date, time])
         return 1
+
     # handles retriving the top 5 users in terms of time taken to win
-    def retrieveTop(self,date):
+    def retrieveTop(self, date):
         winner_select = self.query("SELECT * FROM victors")
         count = 1
         leaders_dict = {}
 
-        winner_select = sorted(winner_select, key = lambda i: int(i['time']))
+        winner_select = sorted(winner_select, key=lambda i: int(i['time']))
 
         for row in winner_select:
-            
+
             # only store winners that won on todays wordle
             if row['date'] == date:
                 # only take the top 5
                 if count <= 5:
-                    leaders_dict[count] = row['username'],row['time']
+                    leaders_dict[count] = row['username'], row['time']
                     count += 1
         return leaders_dict
 
     def onewayEncrypt(self, string):
         encrypted_string = hashlib.scrypt(string.encode('utf-8'),
-                                          salt = self.encryption['oneway']['salt'],
-                                          n    = self.encryption['oneway']['n'],
-                                          r    = self.encryption['oneway']['r'],
-                                          p    = self.encryption['oneway']['p']
+                                          salt=self.encryption['oneway']['salt'],
+                                          n=self.encryption['oneway']['n'],
+                                          r=self.encryption['oneway']['r'],
+                                          p=self.encryption['oneway']['p']
                                           ).hex()
         return encrypted_string
-
 
     def reversibleEncrypt(self, type, message):
         fernet = Fernet(self.encryption['reversible']['key'])
@@ -340,3 +346,76 @@ class database:
             message = fernet.decrypt(message).decode()
 
         return message
+
+    # #########################################################################################
+    ##################### Flash Cards Functions ###############################################
+    ###########################################################################################
+    def retrievedecks(self,user):
+        decks = self.query("SELECT * FROM decks")
+        users_decks = []
+        for deck in decks:
+            if deck['user_id'] == user:
+                users_decks.append(deck)
+        return users_decks
+
+    def retrieveusers(self, current_user):
+        users = self.query("SELECT * FROM users")
+        for user in users:
+            if user['email'] == current_user:
+                return user['user_id']
+
+        return None
+
+    def retrieveCards(self, deck_id):
+
+        cnx = mysql.connector.connect(host=self.host,
+                                      user=self.user,
+                                      password=self.password,
+                                      port=self.port,
+                                      database=self.database,
+                                      use_unicode=True,
+                                      charset='utf8'
+                                      )
+        cur = cnx.cursor(dictionary=True)
+        cur.execute("""SELECT * FROM cards WHERE deck_id = '%s'""" % (int(deck_id)))
+        cards = cur.fetchall()
+        return cards
+
+    def createdeck(self, user, name, language_1, language_2, accessibility):
+        user_select = self.query("SELECT * FROM users")
+        # iterate through the users and try to match the email with the inputted email
+        user_id = 0
+        for row in user_select:
+
+            if row["email"] == user:
+                user_id = row["user_id"]
+
+        languages = language_1 + ", " + language_2
+        self.insertRows('decks', ['user_id', 'name', 'languages', 'access', ],
+                        [str(user_id), name, languages, accessibility])
+        return {'Success': 1}
+
+    def addcard(self, user, name, front, back, deck_id):
+
+        self.insertRows('cards', ['deck_id', 'front', 'back', 'last_seen'],
+                        [str(deck_id), str(front), str(back), ""])
+
+        return {'Success': 1}
+
+    def deleteCard(self, card_id):
+        cnx = mysql.connector.connect(host=self.host,
+                                      user=self.user,
+                                      password=self.password,
+                                      port=self.port,
+                                      database=self.database,
+                                      use_unicode=True,
+                                      charset='utf8'
+                                      )
+
+        cur = cnx.cursor(dictionary=True)
+        cur.execute("""DELETE FROM cards WHERE cards_id = '%s'""" % (int(card_id)))
+        cnx.commit()
+
+        cur.close()
+        cnx.close()
+        return {'Success': 1}

@@ -3,6 +3,22 @@
 {
   display: none;
 }
+.info
+{
+
+    border-radius: 15px;
+    border: thin solid #11AAEE;
+    color: #777777;
+    margin-top: calc(1.5vw + 2vh);
+    padding:1% 2% 1% 2%;
+    font-size: calc(.75vw + 5px);
+}
+.info:hover
+{
+    border-color:#084477;
+    border-style: solid;
+
+}
 /* this formats the div that contains the login forms */
 .login_div
 {
@@ -53,16 +69,24 @@
 .submit
 {
   text-align: center;
-  background-color: #40DFEF;
-  border-style: outset;
-  color:#F7F7F7;
-  font-size: 100%;
+  border-radius:50px;
+  /* makes the border appear*/
+  color: #f5f5f5;
+  grid-row: 4;
+  width: calc(15vw + 10px);
+  font-size: calc(1vw + 5px);
+  height: calc(4.5vw + 20px);
+
+  background-color: #084477;
+  cursor:pointer;
+  border: medium solid #11AAEE;
+
 }
 /* this is the div that contains the main content */
 .login_content_wrapper
 {
   font-family: 'Montserrat', sans-serif;
-  background-color: #E4F9F5;
+  background-color: #f5f5f5;
   min-height: 80vh;
 
 }
@@ -70,9 +94,7 @@
 /* makes the submit button change colors when hovered */
 .submit:hover
 {
-  border-color:#40DFEF;
-  background-color: #F7F7F7;
-  color:#40DFEF;
+  background-color: #11AAEE;
 
 }
 
@@ -81,3 +103,10 @@
   opacity:1;
   color:#FC4F4F;
 }
+@media screen and (max-width: 650px) {
+  .submit
+  {
+    border: thin solid #11AAEE;
+  }
+}
+

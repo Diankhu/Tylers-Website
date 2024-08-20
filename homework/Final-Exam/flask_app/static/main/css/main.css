@@ -2,18 +2,14 @@
 
 main{
   font-family: 'Montserrat', sans-serif;
-  font-size: 1rem;
+
   margin: 0;
   padding:0;
 }
 
 .content{
   /* gives the content a margin from the bottom and top*/
-  margin-top: 10%;
-  margin-bottom: 10%;
-  /* sets the max for how wide and tall the content is, if bigger it will overflow*/
-
-
+  margin-top: 5%;
   text-align: justify;
   /*allows me to restrict how small the image gets without destroying its dimensions */
   min-height: 20em;
@@ -21,7 +17,7 @@ main{
 }
 /* surrounds all the content in the main part of the page */
 .content_wrapper{
-  background-color: #E4F9F5;
+  background-color: #f5f5f5;
 
   width:100%;
   display:grid;
@@ -29,29 +25,16 @@ main{
 
 }
 
-.fun_fact_header{
-  margin:0;
-
-  text-align: center;
-
-}
-.fun_fact{
-  margin:0;
-  grid-row: 2;
-  grid-column: span 2;
-
-}
 .main_wrapper_div{
 
   width: 80vw;
-  background-color: #E4F9F5;
+
   /*breaks the main container into two equal columns  */
   display:grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr;
+  grid-template-rows: .5fr 1fr;
   /*justifies the content in the middle of their respective columns */
   justify-content: center;
-  grid-gap: 3em;
   /*variable definition is in navbar.css */
   color:var(--main-text-color);
 
@@ -61,12 +44,12 @@ main{
 .profile_desc{
   /* stops the container from getting any smaller than 18 em, which is the same as the image*/
 
-  grid-row: 1;
+  grid-row: 2;
   /* puts the description into the second grid column*/
-  grid-column: 2;
+  grid-column: 1;
   /* this makes it so when there is overflow, a scrollbar will appear and allow the user to scroll through the information*/
   overflow: auto;
-
+  font-size: calc(.7vh + .7vw + 5px);
 
 }
 
@@ -74,7 +57,9 @@ main{
   /*sets the image into the first column */
   grid-row:1;
   grid-column: 1;
-
+  width:20%;
+  height:20%;
+  margin-left:40%;
 }
 .profile_pic .self_picture{
   /* This allows me to edit the dimensions of the actual image content*/
@@ -82,11 +67,10 @@ main{
   height:100%;
   /*stops the image from covering the entire container and ruining its proportions*/
   width:100%;
-  border-radius:5px;
+  border-radius:15px;
   /*cover fills the image to its container*/
   object-fit: cover;
   border: .15em solid #191919;
-
 }
 
 /* if the screen gets smaller than 650px implement these styling changes */
@@ -101,18 +85,14 @@ main{
 
   }
 
-  .fun_fact{
-    /* change the fun fact to the last row */
-    grid-row: 3;
-    grid-column: 1;
-  }
+
 
   .main_wrapper_div{
     /* changes the grid formation into 1 column and 2 rows*/
     display:grid;
     grid-template-columns: 1fr;
     /*this sets the size of each row, the second row can be larger due to more content being in it*/
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     max-height:none;
   }
 
@@ -127,13 +107,15 @@ main{
   /*  change the description to the second row */
   .profile_desc{
     /*sets the description into the second row*/
-    margin-top: 0;
+    margin-top: 15px;
     grid-column: 1;
     grid-row: 2;
     text-align: justify;
     /* this makes the overflow visible and no longer hides it or adds a scroll bar*/
     overflow: visible;
+    font-size: 1rem;
   }
 
 
 }
+

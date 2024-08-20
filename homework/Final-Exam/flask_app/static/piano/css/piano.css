@@ -127,7 +127,7 @@
 
 /* styles the main content section of the projects page */
 .main_wrapper_div{
-  background-color: #E4F9F5;
+  background-color: #f5f5f5;
   /*breaks the main container into two equal columns  */
   display:grid;
   grid-template-columns: 1fr;

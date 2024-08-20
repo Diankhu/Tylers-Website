@@ -14,7 +14,7 @@
 .feedback_button{
   /* styling for the button */
   position:fixed;
-  border: none;
+  border: medium solid #1F1D36;
   color: white;
   background-color: #1F1D36;
   padding-bottom: 10px;
@@ -24,6 +24,8 @@
   font-family: 'Montserrat', sans-serif;
   font-size: 12px;
   border-radius: 5px;
+  transition: border .3s ease-in-out, color .3s ease-in-out;
+  cursor: pointer;
 }
 
 .feedback_button_wrapper{
@@ -37,11 +39,13 @@
   transform-origin: right;
   /* makes the button always appear on top */
   z-index: 10000;
+
 }
 
 /* changes the opacity when the button is hovered */
 .feedback_button:hover{
-  opacity:.5;
+  color:#FC4F4F;
+  border-color: #FC4F4F;
 }
 
 /* gives the comment section more height than the others */
@@ -59,6 +63,7 @@
   top:25vh;
   left:calc(50vw - 150px );
   z-index: 10000;
+  border-radius: 10px;
 }
 
 /* this styles each input in the feedback form */

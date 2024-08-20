@@ -1,0 +1,188 @@
+main
+{
+  background: linear-gradient(to top,#FFB7C5,#FFFFFF 95%);
+
+  min-height: 100vh;
+  min-width: 80vw;
+}
+
+
+.back_button
+{
+  font-size: calc(1.3vw + 1.10vh + 5px);
+  position: absolute;
+  margin-top: calc(1.5vh + .65vw + 7px);
+  color: #084477;
+  cursor:pointer;
+  transition: color .3s ease;
+  margin-left: calc(1vw + 5px);
+}
+.back_button:hover
+{
+  color:#11AAEE;
+}
+.check
+{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+
+.confirmation {
+  height: calc(2vw + 7vh + 20px);
+  width: calc(7.5vh + 9vw + 11px);
+  font-size: calc(1.35vw + 1.2vh + 5px);
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: calc(3% + 20px);
+  cursor:pointer;
+  opacity:.8;
+  transition: opacity .5s ease-in-out,border .5s ease-in-out;
+}
+
+.confirmation:hover
+{
+  opacity:1;
+  border-color: #11AAEE;
+  box-shadow: 0 0 7px #11AAEE;
+}
+.restart
+{
+  display:flex;
+
+  height: calc(3vw + 10.5vh + 30px);
+  width: calc(11.25vh + 13.5vw + 16.5px);
+  font-size: calc(1.5vw + 1.35vh + 6px);
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+  margin-top: calc(3% + 20px);
+  cursor:pointer;
+  opacity:.8;
+  transition: opacity .3s ease-in-out,border .3s ease-in-out;
+  background-color:#7E30E1;
+  box-shadow: 0 0 7px #7E30E1;
+  border-color:#7E30E1;
+  border-style: solid;
+}
+.restart:hover
+{
+  opacity:1;
+  border-color: #11AAEE;
+  box-shadow: 0 0 7px #11AAEE;
+}
+.restart_outer
+{
+  display: none;
+  align-content: center;
+  justify-content: center;
+}
+.correct
+{
+  background-color:#34b233;
+  margin-right: calc((3vh + 7vw + 8px)/2);
+  box-shadow: 0 0 7px #34b233;
+  border-color:#34b233;
+  border-style: solid;
+}
+.deck_name
+{
+  font-size: calc(1.9vw + 1.32vh + 5px);
+  text-align: center;
+  padding-top:3%;
+  padding-bottom: 2%;
+}
+
+.deck_wrapper
+{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  height:100%;
+  width:100%;
+  padding-top:calc(90vh/2 - (5vw + 14vh + 40px) );
+}
+
+.wrong
+{
+  background-color:#ff3333;
+  box-shadow: 0 0 7px #ff3333;
+  border-color:#ff3333;
+  border-style: solid;
+}
+
+
+
+/*********************************************************************/
+/*                        Card Css and Structure                     */
+/*********************************************************************/
+
+
+
+.card_container {
+  height: calc(5vw + 14vh + 40px);
+  width: calc(20vh + 25vw + 30px);
+  perspective: 800px;
+  font-size: calc(1.35vw + 1.2vh + 5px);
+}
+
+.card_container:hover > .card {
+  cursor: pointer;
+  transform: rotateY(180deg);
+}
+
+.card {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  transition: transform 1200ms;
+  transform-style: preserve-3d;
+}
+.card_id
+{
+  display:none;
+}
+.front_card,
+.back_card {
+  height: 100%;
+  width: 100%;
+  border-radius: 5px;
+  position: absolute;
+  backface-visibility: hidden;
+  box-shadow: 0 0 7px #11AAEE;
+  background: linear-gradient(90deg,#11AAEE,#BFEAF5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.back_card {
+  transform: rotateY(180deg);
+}
+/*handles styling for the x on the card used to delete the card*/
+.delete
+{
+  position:absolute;
+  margin-left: calc(.5vw + 3px);
+  font-size: calc(.8vw + 1vh + 3px);
+
+}
+.delete:hover
+{
+  color:#FC4F4F;
+  transition: color .3s ease-in-out;
+}
+
+@media screen and (max-width: 1700px)
+{
+
+.card_collection
+{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr ;
+
+}
+
+}

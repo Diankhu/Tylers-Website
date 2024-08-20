@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS `positions` (
 `inst_id`            int(11)       NOT NULL 				        COMMENT 'FK:The instiution id',
 `title`              varchar(100)  NOT NULL					        COMMENT 'My title in this position',
 `responsibilities`   varchar(500)  NOT NULL                 COMMENT 'My responsibilities in this position',
-`start_date`         date          NOT NULL                 COMMENT 'My start date for this position',
+`start_date`         date          DEFAULT NULL             COMMENT 'My start date for this position',
 `end_date`           date          DEFAULT NULL             COMMENT 'The end date for this position',
 PRIMARY KEY (`position_id`),
 FOREIGN KEY (inst_id) REFERENCES institutions(inst_id)

@@ -2,5 +2,19 @@
 "1","1","Cumulative GPA","3.72/4.00",NULL,"2017-08-31","2022-12-17"
 "2","1","Dean's List","6 Semesters",NULL,"2017-08-31","2022-12-17"
 "3","1",NULL,"Page Family Expendable Scholarship/Fellowship","NULL","2021-08-31","2022-05-03"
-"4","2","GGLeagues Summer League","A League of Legends Collegiate Summer League",NULL,"2018-05-15","2018-08-22"
-"5","3",NULL,"Created a new scheduling system using Microsoft Excel",NULL,"2017-06-15","2017-08-15"
+"4","2",NULL,"Designed and implemented a project that illustrated and animated a machine that could read and
+              play a song from a punch card, coded in C++",NULL,"2021-01-11","2021-04-30"
+"5","2",NULL,"Program would read from a punch card and pass variables through multiple classes like tubing to decipher
+              which instrument on the machine should be animated and sound played",NULL,"2021-01-11","2021-04-30"
+"6","2",NULL,"Implemented a program interface that enabled the user to change the punch card that is read",NULL,"2021-01-11","2021-04-30"
+"7","2",NULL,"Employed the utilization of an adapter class, granting the capability of using this project within
+              other programs",NULL,"2021-01-11","2021-04-30"
+"8","4",NULL,"Recorded and filed over a thousand overdue invoices ",NULL,"2017-06-15","2017-08-15"
+"9","4",NULL,"Implemented Excel spreadsheets to help manage and track inventory",NULL,"2017-06-15","2017-08-15"
+"10","4",NULL,"Designed a new scheduling system by creating an interactive spreadsheet which helped free up over 4 hours a day
+               by eliminating unnecessary phone calls from workers",NULL,"2017-06-15","2017-08-15"
+"11","4",NULL,"Interfaced with employees within and with dealerships outside of the business",NULL,"2017-06-15","2017-08-15"
+"12","3",NULL,"Trained in over 8 varying positions within 3 months",NULL,"2019-05-03","2019-07-22"
+"13","3",NULL,"Recognized by upper management for effort, dependability and moved up to a managerial assistant position on Dock Doors after 2 weeks of work",NULL,"2019-05-03","2019-07-22"
+"14","3",NULL,"Frequently worked overtime to help meet the demands of summer sales",NULL,"2019-05-03","2019-07-22"
+"15","3",NULL,"Played a critical role in the shipping of over 300,000 packages per shift during Prime Week",NULL,"2019-05-03","2019-07-22"

@@ -9,7 +9,7 @@
   padding:0;
   /* this makes sure that when the screen size decreases, the banner container can go no smaller than 2.0em */
   min-height: 2.0em;
-
+  background-color:#AAAAAA;
 }
 /* fixes the banner to the top of the page and hides the overflow*/
 .banner{

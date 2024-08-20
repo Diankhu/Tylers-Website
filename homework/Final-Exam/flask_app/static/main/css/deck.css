@@ -1,0 +1,247 @@
+main
+{
+  background: linear-gradient(to top,#BFEAF5 ,#FFFFFF 80%);
+
+  min-height: 100vh;
+  min-width: 80vw;
+}
+.addition_button
+{
+  font-size: calc(1.3vw + 7px);
+  height: calc(2vh + 25px);
+  display: flex;
+  align-items: center;
+  color: #084477;
+  cursor:pointer;
+  transition: color .3s ease;
+}
+.addition_button:hover
+{
+  color:#11AAEE;
+}
+
+.back_button
+{
+  font-size: calc(1.3vw + 1.10vh + 5px);
+  position: absolute;
+  margin-top: calc(1.5vh + .65vw + 7px);
+  color: #084477;
+  cursor:pointer;
+  transition: color .3s ease;
+  margin-left: calc(1vw + 5px);
+}
+.back_button:hover
+{
+  color:#11AAEE;
+}
+
+
+.card_title
+{
+  font-size: calc(1.55vw + 1.2vh + 5px);
+  text-align: center;
+  padding-top: calc(4vh + 10px);
+  padding-bottom: calc(2vh + 5px);
+}
+.deck_wrapper
+{
+  padding: 2vh 0 2vh 2vw;
+}
+
+.deck_name
+{
+  font-size: calc(1.9vw + 1.32vh + 5px);
+  text-align: center;
+
+}
+.deck_info
+{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin-top: calc(11vw + 20px);
+}
+
+.info
+{
+  font-size: calc(1vw + 1vh + 3px);
+  text-align: center;
+
+}
+.info_box
+{
+  cursor:pointer;
+  background-color:#E5E5E5;
+  border-color:#11AAEE;
+  border-style: solid;
+  border-radius: 5px;
+  font-size: calc(.5vh + .45vw + 5px);
+  height: calc(2vh + 25px);
+  transition: all .3s ease;
+  margin-right:calc(1vw + 20px);
+}
+.info_box:hover
+{
+  border-color: #084477;
+}
+.label
+{
+  font-size: calc(1vw + 5px);
+  pointer-events: none;
+  height: calc(2vh + 25px);
+  display: flex;
+  align-items: center;
+}
+.new_word {
+  display: grid;
+  grid-template-columns: calc(3vw + 20px) calc(20vw + 20px) calc(3vw + 20px) calc(20vw + 20px) calc(3vw + 20px);
+  justify-content: center;
+  padding-top: calc(2vh + 5px);
+  padding-bottom: calc(2vh + 5px);
+}
+.none
+{
+  display:none;
+}
+.study_parent
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.study_start
+{
+  color: black ;
+  width: calc(11vw + 10px);
+  height: calc(8vh + 10px);
+  margin-top: calc(1.5vh + .65vw + 7px);
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  transition: border .3s ease-in-out, color .3s ease-in-out;
+  cursor: pointer;
+  background: linear-gradient(45deg,#11AAEE,#BFEAF5 );
+  border-radius:50px;
+  border: medium solid #084477;
+  box-shadow: 0 0 3px #084477;
+  font-size: calc(1vw + 1vh + 3px);
+
+}
+.study_start:hover
+{
+  border-color: #FC4F4F;
+  color: #FC4F4F;
+}
+/*********************************************************************/
+/*                        Card Css and Structure                     */
+/*********************************************************************/
+
+.card_collection
+{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  padding: 2vh 0 2vh 2vw;
+  grid-row-gap: calc(5vh + 5px);
+  grid-column-gap: calc(1vh + 10px);
+}
+
+.card_container {
+  height: calc(5vw + 16vh + 40px);
+  width: calc(12vh + 3vw + 30px);
+  perspective: 800px;
+  font-size: calc(1.35vw + 1.2vh + 5px);
+}
+
+.card_container:hover > .card {
+  cursor: pointer;
+  transform: rotateY(180deg);
+}
+
+.card {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  transition: transform 1500ms;
+  transform-style: preserve-3d;
+}
+.card_id
+{
+  display:none;
+}
+.front_card,
+.back_card {
+  height: 100%;
+  width: 100%;
+  border-radius: 5%;
+  position: absolute;
+  backface-visibility: hidden;
+  box-shadow: 0 0 7px #FFB7C5;
+  background: linear-gradient(90deg,#FFB7C5,#FFFFFF);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.back_card {
+  transform: rotateY(180deg);
+}
+/*handles styling for the x on the card used to delete the card*/
+.delete
+{
+  position:absolute;
+  margin-left: calc(.5vw + 3px);
+  font-size: calc(.8vw + 1vh + 3px);
+
+}
+.delete:hover
+{
+  color:#FC4F4F;
+  transition: color .3s ease-in-out;
+}
+
+@media screen and (max-width: 1700px)
+{
+
+.card_collection
+{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr ;
+
+}
+
+}
+
+
+@media screen and (max-width: 850px)
+{
+
+.card_collection
+{
+  display:grid;
+  grid-template-columns: 1fr;
+  margin-left: calc(50% - (5vw + 16vh + 40px)/2);
+}
+
+.label
+{
+  font-size: calc(1vw + 10px);
+
+}
+#front,#back
+{
+  margin-left:10px;
+  margin-right: 10px;
+}
+
+.study_start
+{
+  width: calc(10vw + 45px);
+  height: calc(4vh + 10px);
+  font-size: calc(1vw + 1vh + 3px);
+}
+
+.deck_info
+{
+
+  margin-top: calc(11vw + 50px);
+}
+}

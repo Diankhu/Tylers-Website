@@ -7,6 +7,7 @@
   <meta name="description" content="CSE 477 Final Exam">
   <meta name="author" content="Tyler White">
   {% block extrainfo %}{% endblock %}
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=PT+Sans+Narrow&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Merriweather|Montserrat|Sacramento|Quintessential" rel="stylesheet">
   <link rel="stylesheet"    href="{{ url_for('static', filename='main/css/header.css') }}">
   <link rel="stylesheet"    href="{{ url_for('static', filename='main/css/navbar.css') }}">
@@ -18,26 +19,16 @@
 
 <body>
     <article>
-    <!-- The header  -->
-    <header>
-      <div class="header_wrapper">
 
-
-        <!---container for the header banner --->
-        <div class="banner" >
-          <img src="static/main/images/banner.jpg" alt="banner" loading="lazy" class = "banner_picture">
-        </div>
-      </div>
-    </header>
 
     <!-- The navigation bar -->
     <!--- Navigation Bar section--->
     <nav>
       <div class="nav_wrapper">
         {% if user == 'Unknown' %}
-          <p class = "assignment_name">CSE 477 - Final Exam</p>
+          <p class = "assignment_name">Welcome</p>
         {% else %}
-          <p class = "assignment_name">Logged in as {{user}}</p>
+          <p class = "assignment_name">Welcome {{user}}</p>
         {% endif %}
         <!--- contains all link items--->
         <div class="links">
@@ -54,18 +45,18 @@
           <ul class = "list_link">
             <li><a href="/home" class="link">Home</a></li>
             <li><a href="/projects" class="link">Projects</a></li>
-            <li>
-              <a href="/resume" class="link">Resume</a>
-            </li>
-            <li>
-              <a href="/login" class = "link">Login</a>
-            </li>
-            <li>
-              <a href="/createaccount" class = "link">Sign Up</a>
-            </li>
-            <li>
-              <a href="/logout" class = "link" >Logout</a>
-            </li>
+            {% if user == 'Unknown' %}
+                <li>
+                <a href="/login" class = "link">Login</a>
+                </li>
+                <li>
+                <a href="/createaccount" class = "link">Sign Up</a>
+                </li>
+            {% else %}
+                <li>
+                <a href="/logout" class = "link" >Logout</a>
+                </li>
+            {% endif %}
             <!--- this list item is for when the screen is below 650px and the linkedin image is not being used --->
             <li>
               <a href="https://www.linkedin.com/in/whitety4/"  id = "small_screen_linkedin" target="_blank" class="link">

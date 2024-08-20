@@ -1,0 +1,92 @@
+{% extends 'shared/layout.html' %}
+
+{% block extrainfo %}
+<title>Deck</title>
+
+{% endblock %}
+
+{% block extracss %}
+<link rel="stylesheet"    href="{{ url_for('static', filename='main/css/deck.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+{% endblock %}
+{% block maincontent %}
+<!--- main content --->
+
+  <main>
+    <!--- div wraps around all the content --->
+    <div class="deck_wrapper">
+        <div class = "back_button">
+            <i class="fa-solid fa-left-long fa-xl"></i>
+        </div>
+
+        <div class = "deck_name">
+            {{ current_deck["name"]|capitalize }}
+        </div>
+                {# study button start #}
+        <div class = "deck_info">
+            <div class = "card_count info">
+                Card Count: {{ count }}
+            </div>
+            <div class=" languages info">
+                Languages: {{ current_deck["languages"] }}
+            </div>
+            <div class="access info">
+                Accessibility: {{ current_deck["access"]|capitalize }}
+            </div>
+        </div>
+        <div class="card_title">
+            New Card
+        </div>
+
+        <form action="/processwordadd" method = "post" class = new_word>
+            <label for="front"  class = "label">Front: </label>
+            <input id= "front" name= "front" type="text" placeholder="Front of the Card" required class="info_box front">
+            <label for="back" class = "label">Back: </label>
+            <input id= "back" name= "back" type="text" placeholder="Back of the Card" required class="info_box back">
+            <label for="addition" class="addition_button">
+                <i class="fa-solid fa-plus"></i>
+            </label>
+
+            <input type="submit" id = 'addition' class = 'none' value = 'Submit'>
+        </form>
+        <div class = "study_parent">
+            <div class = "study_start">Study</div>
+
+        </div>
+        <div class="card_title">
+            Cards
+        </div>
+
+        <div class = "card_collection">
+            {% for i in cards %}
+
+                <div class="card_container">
+                    <div class="card">
+                        <div class="card_id">
+                            {{ i['cards_id' ]}}
+                        </div>
+                        <div class="front_card">
+                        {{i['front'] }}
+                        </div>
+                        <div class="back_card">
+                        {{i['back'] }}
+                        </div>
+                        <div class="delete">
+                            <i class="fa-solid fa-xmark "></i>
+                        </div>
+                    </div>
+
+                </div>
+            {% endfor %}
+        </div>
+
+    </div>
+
+  </main>
+{% endblock %}
+
+{% block extrajs %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- the script implementation for the javascript associated with this page put at bottom so it will load last -->
+<script src = "static/main/js/deck.js"></script>
+{% endblock %}

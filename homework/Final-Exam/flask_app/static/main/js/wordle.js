@@ -15,6 +15,7 @@ const not_enough = document.querySelector(".too_few");
 // handles the exit button for the instructions
 const exit_button = document.querySelector(".exit_button");
 const instruction_prompt = document.querySelector(".instruction_prompt");
+const scoreboard_exit = document.querySelector(".scoreboard_exit");
 // contains mapping keydown codes and their respective objects
 var keyMap = {}
 var currentWordLength = 0;
@@ -443,6 +444,12 @@ function hide()
   instruction_prompt.style.display = "none";
   keyboardOn = true;
 }
+function scoreboard_hide()
+{
+    const scoreboard = document.querySelector(".scoreboard");
+    scoreboard.style.display = 'none';
+}
+
 // MAIN code
 // maps all the key objects with their correct keydown code
 for (let i = 0; i < keys.length;i++)
@@ -459,3 +466,4 @@ keys.forEach(key => {
 document.addEventListener('keydown', keylog);
 // adds click listener to the exit button
 exit_button.addEventListener("click", hide);
+scoreboard_exit.addEventListener("click",scoreboard_hide)

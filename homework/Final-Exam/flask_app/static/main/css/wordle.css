@@ -1,7 +1,7 @@
 
 /* styles the main content section of the wordle page */
 .wordle_wrapper_div{
-  background-color: #E4F9F5;
+  background-color: #f5f5f5;
   /*breaks the main container into two equal columns  */
   min-height: 100vh;
   min-width: 80vw;
@@ -135,13 +135,19 @@ hr
 {
   margin-top: 7.5%;
 }
+.scoreboard_exit
+{
+  color:red;
+  transition: color .5s ease;
+  cursor:pointer;
+}
 /* ////////////////////////////////////////////////////////////// */
 /* this section styles the grid */
 /* ////////////////////////////////////////////////////////////// */
 .grid_box
 {
   display: inline;
-  background-color: #E4F9F5;
+  background-color: #f5f5f5;
   width:calc(2.5vw + 2vh + 5px);
   height:calc(2.5vw + 2vh + 5px);
   margin:5px;
@@ -161,7 +167,7 @@ hr
 {
   padding-top: 2.5%;
   color:#313131;
-  background-color: #E4F9F5;
+  background-color: #f5f5f5;
 }
 .grid_row
 {

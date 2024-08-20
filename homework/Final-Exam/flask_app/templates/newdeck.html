@@ -1,0 +1,44 @@
+{% extends 'shared/layout.html' %}
+
+{% block extrainfo %}
+<title>Flashcard Project</title>
+
+{% endblock %}
+
+{% block extracss %}
+<link rel="stylesheet"    href="{{ url_for('static', filename='main/css/new_deck.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+{% endblock %}
+
+{% block maincontent %}
+<!--- main content --->
+
+  <main>
+    <!--- div wraps around all the content --->
+    <div class="create_deck_wrapper">
+
+        <form action="/processdeck" method = "post" class = deck_create_form>
+            <label for="deck_name"  class = "label">Deck Name: </label>
+            <input id= "deck_name" name= "deck_name" type="text" placeholder="Deck Name" required class="info_box deck_name">
+            <label for="language_1" class = "label">First Language: </label>
+            <input id= "language_1" name= "language_1" placeholder="First Language" required class="info_box language_1">
+            <label for="language_2" class = "label">Second Language: </label>
+            <input id= "language_2"  name= "language_2" placeholder="Second Language" class="info_box language_2">
+            <label for="access" class = "label">Accessbility:  </label>
+            <select id = "access" name="access"  required class="info_box access">
+                <option hidden disabled selected value> Select </option>
+                <option  value="public">Public</option>
+                <option  value="private">Private</option>
+            </select>
+            <input type="submit" id = 'submit_button' class = 'button' value = 'Submit'>
+        </form>
+    </div>
+
+  </main>
+{% endblock %}
+
+{% block extrajs %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!-- the script implementation for the javascript associated with this page put at bottom so it will load last -->
+
+{% endblock %}

@@ -29,8 +29,8 @@ p{
   text-align: justify;
   /*allows me to restrict how small the content gets */
   min-height: 75vh;
-  max-height: 100vh;
-  background-color: #E4F9F5;
+  
+  background-color: #f5f5f5;
 }
 /* styles the institution name */
 .institution

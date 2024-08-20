@@ -1,5 +1,5 @@
 /* Nav Bar Section*/
-:root{--main-text-color:#2B2B2B}
+
 /* removes the padding and margin on all of these base elements */
 a{
   margin:0;
@@ -26,6 +26,10 @@ nav{
 
   margin:0;
   padding:0;
+  position: sticky;
+  top: 0;
+  z-index: 105;
+  box-shadow: 0 5px 3px -3px black;
 
 }
 
@@ -57,15 +61,17 @@ li a .linkedin_logo{
 
 .link{
   text-decoration: none;
-  margin: 0 1.25em 0 1.25em;
-  opacity:.5;
+  margin: 0 1.5vw 0 1.5vw;
+  opacity:.7;
   font-size: .9em;
+  transition: color .5s ease;
 }
 /* puts the links into the second grid column and makes them start at the end of the flex container*/
 .links{
   grid-column: 2;
   justify-content: flex-end;
   margin:.5em 0 .5em 0;
+
 }
 
 .links .list_link{
@@ -90,22 +96,41 @@ li a .linkedin_logo{
   display: none;
 }
 .nav_wrapper{
-  color:var(--main-text-color);
-  background-color: #F7F7F7;
+
+  color:white;
+  background-color: #084477;
   font-family: 'Merriweather', sans-serif;
-  font-size: calc(.65em + 1vw);
-  min-height: 1.5em;
+  font-size: calc(.65em + .9vw);
+  min-height: 15vh;
   /* breaks nav bar into a grid with 2 columns */
   display: grid;
   grid-template-columns: 1fr 3fr;
+  /* centers items vertically */
+  align-items: center;
 
 }
 #small_screen_linkedin{
   display:none;
 }
 
+/*  state changes*/
+.link:link{
+  color:var(--main-text-color);
+}
+
+.link:visited{
+  color:var(--main-text-color);
+}
+
+.link:hover{
+  color:#FC4F4F;
+  opacity: 1;
+}
+.link:checked{
+  display:none;
+}
 /* When screen becomes less than 650 px implement these changes*/
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 750px) {
 
   /* make linkedin logo no longer display*/
   .linkedin_logo{
@@ -163,19 +188,4 @@ li a .linkedin_logo{
 }
 
 
-/*  state changes*/
-.link:link{
-  color:var(--main-text-color);
-}
 
-.link:visited{
-  color:var(--main-text-color);
-}
-
-.link:hover{
-  color:#FC4F4F;
-  opacity: 1;
-}
-.link:checked{
-  display:none;
-}

@@ -25,7 +25,7 @@ hr
 }
 
 .content_wrapper{
-  background-color: #E4F9F5;
+  background-color: #f5f5f5;
 
   width:100%;
   display:grid;
@@ -34,20 +34,31 @@ hr
 }
 
 .main_wrapper_div{
-  background-color: #E4F9F5;
+  background-color: #f5f5f5;
   display:grid;
   /*breaks the main container into two equal columns  */
   grid-template-columns: 1fr 1fr;
   /*  3 rows */
-  grid-template-rows: 1fr 2fr 2fr;
+  grid-template-rows: 1fr 2fr 2fr 2fr 2fr;
   min-height: 80vh;
   width: 80vw;
   /*justifies the content in the middle of their respective columns */
   justify-content: center;
   grid-gap: 3em;
   /*variable definition is in navbar.css */
-  color:var(--main-text-color);
 
+  margin-bottom: 5%;
+
+}
+.games
+{
+  grid-row: 3;
+  grid-column: 1;
+}
+.flashcard
+{
+  grid-row: 4;
+  grid-column: 2;
 }
 .piano{
   margin:0;
@@ -57,7 +68,7 @@ hr
 .piano_desc{
 
   /* puts the description into the second grid column*/
-  grid-row: 2;
+  grid-row: 5;
   grid-column: 2;
   /* this makes it so when there is overflow, a scrollbar will appear and allow the user to scroll through the information*/
   overflow: auto;
@@ -67,7 +78,7 @@ hr
 .piano_image{
 
   /*sets the image into the first column of the second row*/
-  grid-row: 2;
+  grid-row: 5;
   grid-column: 1;
 
 }
@@ -107,15 +118,15 @@ hr
 .wordle_description
 {
   /*sets the image into the second column of the third row*/
-  grid-row: 3;
-  grid-column: 2;
+  grid-row: 2;
+  grid-column: 1;
 }
 
 .wordle_image
 {
   /*sets the image into the first column of the third row*/
-  grid-row: 3;
-  grid-column: 1;
+  grid-row: 2;
+  grid-column: 2;
 }
 
 .wordle_image .wordle_picture{
@@ -134,8 +145,21 @@ hr
   opacity: .8;
 }
 
+/* flash card project css */
+.image .wordle_picture{
+  /* This allows me to edit the dimensions of the actual image content*/
+  height:100%;
+  /*stops the image from covering the entire container and ruining its proportions*/
+  width:100%;
+
+  /*cover fills the image to its container*/
+  object-fit: cover;
+  border: .15em solid #191919;
+  border-radius:5px;
+}
+
 /* when the screen is mobile size, it will adjust all the content into one column */
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 1500px) {
 
   .content{
     width: 80vw;
@@ -145,32 +169,51 @@ hr
 
   }
   .main_wrapper_div{
-    /* changes the grid formation into 1 column and 2 rows*/
+    /* changes the grid formation into 1 column and multiple rows*/
     display:grid;
     grid-template-columns: 1fr;
     /*this sets the size of each row, the second row can be larger due to more content being in it*/
-    grid-template-rows: 1fr 1fr 1.2fr 1fr 1.5fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr 1fr .5fr 1fr 1.5fr 2fr;
     justify-content:center;
     max-height:none;
   }
-
   .projects_desc{
 
     grid-column: 1;
     grid-row: 1;
 
   }
+  .games
+  {
+  grid-row: 4;
+  grid-column: 1;
+  }
+  .board_game_desc
+  {
+    grid-row: 5;
+    grid-column: 1;
+  }
+  .flashcard
+  {
+    grid-row: 6;
+    grid-column: 1;
+  }
+  .flash_desc
+  {
+    grid-row: 7;
+    grid-column: 1;
+  }
 
   .piano_image{
     grid-column: 1;
-    grid-row: 2;
+    grid-row: 8;
 
   }
 
   .piano_desc{
     margin-top: 0;
     grid-column: 1;
-    grid-row: 3;
+    grid-row: 9;
     text-align: justify;
     /* this makes the overflow visible and no longer hides it or adds a scroll bar*/
     overflow: visible;
@@ -179,13 +222,13 @@ hr
   .wordle_image
   {
     grid-column: 1;
-    grid-row: 4;
+    grid-row: 2;
   }
 
   .wordle_desc
   {
     grid-column: 1;
-    grid-row: 5;
+    grid-row: 3;
     text-align: justify;
     /* this makes the overflow visible and no longer hides it or adds a scroll bar*/
     overflow: visible;

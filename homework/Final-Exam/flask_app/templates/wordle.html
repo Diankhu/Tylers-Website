@@ -17,6 +17,7 @@
     <div class="wordle_wrapper_div">
       <!-- Instruction Prompt -->
       <div class="instruction_prompt">
+
         <!-- this is the input for the button -->
         <input title="instruction X" type="checkbox" id= "instruction_exit_toggle" class="instruction_exit_toggle" >
         <!--- label attaches something to the checkbox and allows you to choose what the checkbox looks like --->
@@ -65,6 +66,9 @@
         </div>
         <!-- this is the leaderboard that appears at the end of the game -->
         <div class="scoreboard">
+          <!-- this is the input for the button -->
+          <span class="exit_button exit_button_wrapper scoreboard_exit">&#10005;</span>
+
           <!-- this message is for whether the user won or lost -->
           <p class = "status"></p>
           <p class = "title">The correct word was <strong class = "correct_word"></strong></p>

@@ -1,0 +1,21 @@
+/* Main Section */
+
+main{
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  margin: 0;
+  padding:0;
+}
+
+
+
+.content_wrapper{
+  background-color: #f5f5f5;
+
+
+  display:grid;
+  justify-content: center;
+  min-height: 80vh;
+  width:100%;
+
+}
