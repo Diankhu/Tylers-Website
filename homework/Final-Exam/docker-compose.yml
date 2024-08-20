@@ -1,4 +1,4 @@
-# Author  : Prof. MM Ghassemi <ghassem3@msu.edu>
+
 
 version: "3.8"
 services:
@@ -16,6 +16,7 @@ services:
     # Mounts the local directory to docker container as a volume.
     volumes:
       - .:/app
+      - /app/public 
 
 
   
