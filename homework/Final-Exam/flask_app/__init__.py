@@ -5,10 +5,8 @@
 #--------------------------------------------------
 import os
 from flask import Flask
-from flask_socketio import SocketIO
 from flask_failsafe import failsafe
 
-socketio = SocketIO()
 
 #--------------------------------------------------
 # Create a Failsafe Web Application
@@ -34,8 +32,6 @@ def create_app(debug=False):
 	db.createUser(email='owner@email.com' ,password='password', role='owner')
 	db.createUser(email='guest@email.com' ,password='password', role='guest')
 	# ----------------------------------------------
-
-	socketio.init_app(app)
 
 	with app.app_context():
 		from . import routes

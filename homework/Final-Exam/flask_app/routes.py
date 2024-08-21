@@ -1,6 +1,5 @@
 from flask import current_app as app
 from flask import render_template, redirect, request, session, url_for, copy_current_request_context
-from flask_socketio import SocketIO, emit, join_room, leave_room, close_room, rooms, disconnect
 from .utils.database.database import database
 from werkzeug.datastructures import ImmutableMultiDict
 from pprint import pprint
@@ -9,7 +8,6 @@ import random
 import functools
 import requests
 from datetime import date
-from . import socketio
 
 # https://rapidapi.com/dpventures/api/wordsapi/ used for random word and word verification
 db = database()
@@ -112,7 +110,6 @@ def piano():
 def resume():
     resume_data = db.getResumeData()
 
-    pprint(resume_data)
     return render_template('resume.html', resume_data=resume_data, user=getUser())
 
 
@@ -145,7 +142,6 @@ def flash():
     user_id = getUserId()
     decks = db.retrievedecks(user_id)
     counts = dict()
-    print(decks)
     for x in decks:
         cards = db.retrieveCards(x["deck_id"])
 
@@ -426,7 +422,6 @@ def processfeedback():
     # insert it into the database table
     db.insertRows('feedback', header, data)
     feedback_select = "SELECT * FROM feedback"
-    pprint(db.query(feedback_select))
     # grabs the information from the feedback table
     feedback_data = db.query(feedback_select)
     # this redirect prevents page refreshs from inserting the same post request more than one time
